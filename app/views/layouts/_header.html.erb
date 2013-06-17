@@ -1,0 +1,16 @@
+<div id="header">
+	<div id="header_left">
+		<img src="/images/ntc_logo.png" alt="Nepal Telecom"/>
+	</div>
+	<div id="header_right">
+		<h1><%#= link_to "Power Information Management System", stations_path %> Power Information Management System </h1>
+		<h2> Power Department, Chhauni </h2>
+	</div>
+	
+	<% if  user_signed_in? %>
+		<div class="welcome"> Hi, <%= current_user.email %> | <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "sign_out" %> 
+		</div>
+	<% end %>
+</div>
+
+	

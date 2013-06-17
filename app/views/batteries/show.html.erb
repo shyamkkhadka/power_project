@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>System type:</b>
+  <%= @battery.system_type_id %>
+</p>
+
+<p>
+  <b>Company name:</b>
+  <%= @battery.company_name %>
+</p>
+
+<p>
+  <b>Bank no:</b>
+  <%= @battery.bank_no %>
+</p>
+
+<p>
+  <b>Capacity:</b>
+  <%= @battery.capacity %>
+</p>
+
+<p>
+  <b>Installation date:</b>
+  <%= @battery.installation_date %>
+</p>
+
+<p>
+  <b>Fist installation date:</b>
+  <%= @battery.fist_installation_date %>
+</p>
+
+<p>
+  <b>Installation team:</b>
+  <%= @battery.installation_team %>
+</p>
+
+<p>
+  <b>Remarks:</b>
+  <%= @battery.remarks %>
+</p>
+
+<p>
+  <b>Station:</b>
+  <%= @battery.station_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_battery_path(@battery) %> |
+<%= link_to 'Back', batteries_path %>

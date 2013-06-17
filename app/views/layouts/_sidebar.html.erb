@@ -1,0 +1,27 @@
+<div id="side_bar">
+			<div class="box">
+				<h3 class="subhead">Stations Overview</h3>
+				<ul>
+					<li><%= link_to "Stations List", stations_path %></li>
+				</ul>
+			</div>
+
+			<div class="box">
+				<h3 class="subhead">Admin Modules</h3>
+				<ul>
+					<li> <%= link_to  "Add User", new_user_registration_path %> </li>
+					<li> <%= link_to "Add Station", new_station_path %>  </li>
+					<li><a href="">Add Accounting Office</a></li>
+				</ul>
+			</div>
+			
+			<div class="box">
+				<h3 class="subhead">Reporting Modules</h3>
+				<ul>
+					<li><a href="">Daily Report</a></li>
+					<li><a href="">Weekly Report</a></li>
+					<li><a href="">Search Station</a></li>
+					<li><a href="">Error Report</a></li>
+				</ul>
+			</div>
+</div>

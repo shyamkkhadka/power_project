@@ -1,0 +1,82 @@
+<%#= render :file => 'stations_path(@station)' %>
+<div id = "stations_overview">
+	<p id="notice"><%= notice %></p>
+	<h1>General information of <%= @station.name %> </h1>
+	<p>
+	  <b>Incharge name:</b>
+	  <%= @station.inc_name %>
+	</p>
+
+	<p>
+	  <b>Incharge cell number:</b>
+	  <%= @station.inc_cell %>
+	</p>
+	
+	<p>
+  	<b>Incharge address:</b>
+  	<%= @station.inc_address %>
+	</p>
+
+	<p>
+  	<b>Regional Directorate:</b>
+  	<%= @station.regional_directorate.name %>
+	</p>
+
+	<p>
+  	<b>Zone:</b>
+  	<%= @station.regional_directorate.zone %>
+	</p>
+	
+	<p>
+  	<b>District:</b>
+  	<%= @station.regional_directorate.district %>
+	</p>
+
+	<p>
+  	<b>City:</b>
+  	<%= @station.regional_directorate.city %>
+	</p>
+
+	<p>
+  	<b>Remarks:</b>
+  	<%= @station.remarks %>
+	</p>
+</div>
+
+<h1>Listing batteries of station <%= @station.name %></h1>
+
+<table>
+  <tr>
+    <th>System type</th>
+    <th>Company name</th>
+    <th>Bank no</th>
+    <th>Capacity</th>
+    <th>Installation date</th>
+    <th>Fist installation date</th>
+    <th>Installation team</th>
+    <th>Remarks</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @station.batteries.each do |battery| %>
+  <tr>
+    <td><%= battery.system_type.name %></td>
+    <td><%= battery.company_name %></td>
+    <td><%= battery.bank_no %></td>
+    <td><%= battery.capacity %></td>
+    <td><%= battery.installation_date %></td>
+    <td><%= battery.fist_installation_date %></td>
+    <td><%= battery.installation_team %></td>
+    <td><%= battery.remarks %></td>
+    <td><%#= link_to 'Show', battery %></td>
+    <td><%= link_to 'Edit', edit_station_battery_path(@station, battery) %></td>
+    <td><%= link_to 'Destroy', station_battery_path(@station, battery), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Battery', new_station_battery_path(@station) %>
