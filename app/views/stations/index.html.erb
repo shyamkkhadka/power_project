@@ -1,0 +1,11 @@
+<h1> Listing power stations </h1>
+<ul>
+	<% @stations.each do |station| %>
+			<li>
+				<span> <%= link_to station.name, station_batteries_path(station) %></span>
+				<span> <%= link_to 'Edit', edit_station_path(station) %> </span>
+				<span> <%= link_to 'Delete', station, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+			</li>
+	<% end %>
+</ul>
+

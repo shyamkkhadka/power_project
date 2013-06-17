@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  system_type_id: 1
+  company_name: MyString
+  bank_no: 1
+  capacity: 1
+  installation_date: 2013-06-10
+  fist_installation_date: 2013-06-10
+  installation_team: MyString
+  remarks: MyText
+  station_id: 1
+
+two:
+  system_type_id: 1
+  company_name: MyString
+  bank_no: 1
+  capacity: 1
+  installation_date: 2013-06-10
+  fist_installation_date: 2013-06-10
+  installation_team: MyString
+  remarks: MyText
+  station_id: 1

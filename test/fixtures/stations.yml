@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  inc_name: MyString
+  inc_cell: 1
+  inc_address: MyString
+  remarks: MyText
+
+two:
+  name: MyString
+  inc_name: MyString
+  inc_cell: 1
+  inc_address: MyString
+  remarks: MyText

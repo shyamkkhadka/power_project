@@ -11,3 +11,276 @@
  *= require_self
  *= require_tree .
  */
+
+= require_self
+
+/* CSS Document */
+
+body {
+	padding:0px; 
+	margin:0px;
+	background-color:#fafafa; 
+	font:11px/20px Tahoma, Arial, Helvetica, sans-serif;
+	}
+
+ul{list-style-type:none}
+
+/***** HEADER ******/
+div#header {
+	margin:0; 
+	padding:10px;
+	height: 114px;
+	background-color:#2275a5;
+	border-bottom:3px solid #094c73;
+}
+
+div#header_left {
+  float: left;
+  width:200px;
+  margin:0;
+}
+
+div#header_left div.logo_label {
+	margin-top:0px;
+	margin-left:0px;
+}
+
+div#header_right h1 {
+  color: #fff;
+  margin-top:25px;
+  font:24px/18px  Arial,Tahoma, Helvetica;
+}
+
+div#header_right h1 a {
+  color: #fff;
+}
+
+div#header_right h2 {
+  color: yellow;
+  font:16px Arial,Tahoma, Helvetica;
+}
+
+div#header_right span a:link{
+	color:yellow;
+}
+div.welcome { color:#FFF !important; float:right}
+
+div.welcome a { color:#FFF !important; }
+
+div.welcome a:hover { text-decoration: none; background-color: none;}
+div#tabs ul li {
+	display: inline-block;
+}
+
+
+/************ SIDEBAR *************/
+div#side_bar {
+	float: left; 
+}
+
+#side_bar .box{
+	width:218px; height:auto; padding:0px; margin-bottom:15px; 
+	color:#369; border:1px solid #fff; border-bottom:5px solid #CCC;  
+	background:url('/images/bg_box.jpg') no-repeat; background-color:#f1f1f1;
+}
+#side_bar .subhead{color:#FFF; font-weight:bold; margin:5px 10px 15px;}
+#side_bar ul { 	list-style-type: none; padding: 0; margin: 0;}
+#side_bar ul li { margin-top: 0px; border-bottom:#ddd 1px solid;  border-top:1px #f1f1f1 solid;}
+#side_bar ul li a {	display: block; width: 183px; padding: 5px 15px 5px; text-decoration: none; color: #336699; border-left:5px solid #7bc6ff; background:url('/images/bgleftmenu.jpg'); }
+#side_bar ul li a:hover { border-left:5px solid #3290d8; background-color: #DDD; color:#f28900; }
+#side_bar ul li a:focus { border-left:5px solid #3290d8; background-color:#DDD;}
+
+
+/***** BODY ******/
+div#container {
+	margin:10px 10px 0 10px;
+	color:#46596a;
+}
+
+div#content {
+	margin-left: 225px;
+	background-color:#f6f6f6; 
+	padding: 1px 0 0 20px;
+}
+
+
+/*
+div#side_bar div.block {
+	margin: 10px 0 10px; padding: 10px; 
+	border: 3px solid #ddd; 
+	-moz-border-radius: 10px;
+	-webkit-border-radius:10px;
+	-khtml-border-radius: 10px;
+	border-radius:10px;
+	background-color:#f6f6f6;		
+}
+
+div#side_bar div.block div.content {
+	margin: 0 0 2px 8px;
+}
+*/
+/*
+div#container span.title { 
+	color: #333333;
+	font-size: 20px;
+	margin: 5px;
+}
+
+/*
+div#tab1 div.title {
+	color: #333333;
+	font-size: 20px;
+	margin: 0 0 20px;
+}
+
+div.row {
+   clear: both;
+   color:#46596a;
+   height: 30px;
+}
+
+div.row div.left {
+   color:#46596a;
+   display: block;
+   float: left;
+   height: 20px;
+   padding: 5px 8px;
+   width: 74%;
+}
+
+div.row div.right {
+	  display: inline-block;
+    float: right;
+    height: 20px;
+    padding: 5px 8px;
+    text-align: left;
+    width: 5%;
+}
+
+div.element {
+	color: #336699;
+	margin: 0 0 4px 8px;
+}
+
+div.data-list {
+	ma/rgin-bottom: 25px;
+}
+
+div.small-row {
+   clear: both;
+   color:#46596a;
+}
+
+div.small-row div.small-left {
+   color:#46596a;
+   display: block;
+   float: left;
+   padding: 3px 8px;
+   width: 24%;
+}
+
+div.station_tech_overview div.small-row div.small-left, div.station_geo_overview div.small-row div.small-left {
+   width: 34%;
+}
+
+div#station_list div.station {
+	border-bottom: 1px solid #CCCCCC;
+	margin-bottom: 5px;
+}
+
+div#station_list div.station:hover {
+	background-color: #EDE6E6;
+}
+
+
+div.small-row div.small-right {
+	  display: inline-block;
+    padding: 3px 8px;
+    text-align: left;
+}
+
+textarea.small_text {
+	height: 140px;
+}
+
+select#ac_ac_type {
+	width: 285px;
+}
+#formsearch{clear:both;width:100%;background-color:#525252; height:30px; margin-top:0px;z-index:100;}
+form#searchform {
+	
+	float:right;
+	margin:5px;
+}*/
+	
+/* will_paginate CSS */
+div.pagination .next_page {
+  float:left;
+  margin-right: 10px;
+}
+
+div.no_tab_container {
+	padding: 10px;
+}
+
+div.no_tab_container {
+	border: 3px solid #ddd; 
+	-moz-border-radius: 10px;
+	-webkit-border-radius:10px;
+	-khtml-border-radius: 10px;
+	border-radius:10px;
+	background-color:#f6f6f6;
+}
+
+div#station_list div.station_tech_overview {
+    display: inline-block;
+    width: 45%;
+    padding: 10px;
+}
+
+
+div#station_list div.station_geo_overview {
+    display: inline-block;
+    margin-left: 20px;
+    padding: 10px;
+    width: 45%;
+}
+
+div#station_list div.heading {
+	 font-size: 19px;
+	 padding: 5px;
+	 margin-left: 10px;
+}
+
+div#station_list div.heading a{
+	color: #2275A5;
+} 
+div.fault-servicing-history {
+	font-size: 19px;
+	padding: 5px;
+}
+
+select#station_zone, select#station_account_office {
+	width: 324px;
+}
+
+div.list_pagination {
+	margin-top: 12px;
+}
+
+div.big-heading {
+    color: #46596A;
+    font: 26px Arial,Tahoma,Helvetica;
+    margin: 5px 0 9px -22px;
+    text-align: center;
+}
+
+div.equipment-detail {
+	border-bottom: 1px solid #CCCCCC;
+	margin-bottom: 5px;
+}
+
+
+
+
+    
