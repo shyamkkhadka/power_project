@@ -23,6 +23,8 @@ end
 gem 'jquery-rails'
 gem 'devise'
 
+gem 'tabulous'
+
 # for deployment on Heroku
 #gem "heroku"
 #group :development, :test do

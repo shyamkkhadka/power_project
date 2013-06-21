@@ -1,61 +1,47 @@
 <%#= render :file => 'stations_path(@station)' %>
 <div id = "stations_overview">
-	<p id="notice"><%= notice %></p>
+	
 	<h1>General information of <%= @station.name %> </h1>
-	<p>
-	  <b>Incharge name:</b>
-	  <%= @station.inc_name %>
-	</p>
-
-	<p>
-	  <b>Incharge cell number:</b>
-	  <%= @station.inc_cell %>
-	</p>
 	
-	<p>
-  	<b>Incharge address:</b>
-  	<%= @station.inc_address %>
-	</p>
-
-	<p>
-  	<b>Regional Directorate:</b>
-  	<%= @station.regional_directorate.name %>
-	</p>
-
-	<p>
-  	<b>Zone:</b>
-  	<%= @station.regional_directorate.zone %>
-	</p>
-	
-	<p>
-  	<b>District:</b>
-  	<%= @station.regional_directorate.district %>
-	</p>
-
-	<p>
-  	<b>City:</b>
-  	<%= @station.regional_directorate.city %>
-	</p>
-
-	<p>
-  	<b>Remarks:</b>
-  	<%= @station.remarks %>
-	</p>
+	<div id="box">
+	  <div class="leftdiv">Incharge name</div>
+	  <div class="rightdiv">: <%= @station.inc_name %></div><br />
+	  
+	  <div class="leftdiv">Incharge cell number</div>
+	  <div class="rightdiv">: <%= @station.inc_cell %></div><br />
+	  
+	  <div class="leftdiv">Incharge Address</div>
+	  <div class="rightdiv">: <%= @station.inc_address %></div><br />
+	  
+	  <div class="leftdiv">Regional Directorate</div>
+	  <div class="rightdiv">: <%= @station.regional_directorate.name %></div><br />
+	  
+	  <div class="leftdiv">Zone/ District/ City</div>
+	  <div class="rightdiv">: <%= @station.regional_directorate.zone %>, <%= @station.regional_directorate.district %>, <%= @station.regional_directorate.city %></div><br />
+	  
+	  <div class="leftdiv">Remarks</div>
+	  <div class="rightdiv">: <%= @station.remarks %></div><br />
+  	
+	</div>
 </div>
+<div class="cleardiv"></div>
 
+<%= tabs %>
+
+<b id="notice"><%= notice %></b>
 <h1>Listing batteries of station <%= @station.name %></h1>
 
 <table>
   <tr>
-    <th>System type</th>
-    <th>Company name</th>
-    <th>Bank no</th>
+    <th>System</th>
+    <th>Company</th>
+    <th>Bank No</th>
     <th>Capacity</th>
-    <th>Installation date</th>
-    <th>Fist installation date</th>
-    <th>Installation team</th>
+    <th>Install Date</th>
+    <th>First Install Date</th>
+    <th>Team</th>
     <th>Remarks</th>
-    <th></th>
+    <th>Status</th>
     <th></th>
     <th></th>
   </tr>

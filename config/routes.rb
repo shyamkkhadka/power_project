@@ -1,8 +1,8 @@
 PowerProject::Application.routes.draw do
   
+resources :rectifers
 
-
-	resources :stations do
+  resources :stations do
 	  resources :batteries
   end
 

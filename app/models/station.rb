@@ -6,6 +6,7 @@ class Station < ActiveRecord::Base
   
   belongs_to :regional_directorate
   has_many :batteries,  :dependent => :destroy 
-  
+  has_many :rectifiers,  :dependent => :destroy 
+
 
 end
