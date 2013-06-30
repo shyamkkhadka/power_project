@@ -1,62 +1,19 @@
-<%#= render :file => 'stations_path(@station)' %>
-<div id = "stations_overview">
-	<p id="notice"><%= notice %></p>
-	<h1>General information of <%= @station.name %> </h1>
-	<p>
-	  <b>Incharge name:</b>
-	  <%= @station.inc_name %>
-	</p>
-
-	<p>
-	  <b>Incharge cell number:</b>
-	  <%= @station.inc_cell %>
-	</p>
-	
-	<p>
-  	<b>Incharge address:</b>
-  	<%= @station.inc_address %>
-	</p>
-
-	<p>
-  	<b>Regional Directorate:</b>
-  	<%= @station.regional_directorate.name %>
-	</p>
-
-	<p>
-  	<b>Zone:</b>
-  	<%= @station.regional_directorate.zone %>
-	</p>
-	
-	<p>
-  	<b>District:</b>
-  	<%= @station.regional_directorate.district %>
-	</p>
-
-	<p>
-  	<b>City:</b>
-  	<%= @station.regional_directorate.city %>
-	</p>
-
-	<p>
-  	<b>Remarks:</b>
-  	<%= @station.remarks %>
-	</p>
-</div>
-
 <h1>Listing batteries of station <%= @station.name %></h1>
 
 <table>
   <tr>
-    <th>System type</th>
-    <th>Company name</th>
-    <th>Bank no</th>
+    <th>System</th>
+    <th>Company</th>
+    <th>Bank No</th>
     <th>Capacity</th>
-    <th>Installation date</th>
-    <th>Fist installation date</th>
-    <th>Installation team</th>
+    <th>Install Date</th>
+    <th>First Install Date</th>
+    <th>Team</th>
     <th>Remarks</th>
+    <th>Status</th>
+		 <th></th>
     <th></th>
-    <th></th>
+		 <th></th>
     <th></th>
   </tr>
 
@@ -70,9 +27,21 @@
     <td><%= battery.fist_installation_date %></td>
     <td><%= battery.installation_team %></td>
     <td><%= battery.remarks %></td>
-    <td><%#= link_to 'Show', battery %></td>
+		<td></td>
+		<% if battery.daily_test_report_entered? %>
+			<td> <%= link_to "Daily test report entered", battery_battery_daily_test_path(battery, battery.battery_daily_tests.last) %> </td>
+		<% else %>
+				<td><%= link_to 'Daily test report entry', new_battery_battery_daily_test_path(battery) %></td>
+		<% end %>
+	
+		<% if battery.weekly_test_report_entered? %>
+			<td> <%= link_to "Weekly test report entered", battery_battery_daily_test_path(battery, battery.battery_daily_tests.last) %> </td>
+		<% else %>
+				<td><%= link_to 'Weekly test report entry', new_battery_battery_daily_test_path(battery) %></td>
+		<% end %>		
+		
     <td><%= link_to 'Edit', edit_station_battery_path(@station, battery) %></td>
-    <td><%= link_to 'Destroy', station_battery_path(@station, battery), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Delete', station_battery_path(@station, battery), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

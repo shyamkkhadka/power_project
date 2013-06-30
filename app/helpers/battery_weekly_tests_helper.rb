@@ -1,0 +1,2 @@
+module BatteryWeeklyTestsHelper
+end

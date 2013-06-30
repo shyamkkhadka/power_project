@@ -1,0 +1,25 @@
+ <!--
+<p><%#= f.label :first_name %></p>
+<p><%#= f.text_fiesld :first_name %></p>
+
+<p><%#= f.label :last_name %></p>
+<p><%#= f.text_field :last_name %></p>-->
+ 
+<p><%= f.label :email %></p>
+<p><%= f.text_field :email %></p>
+ 
+<% if can? :read, Role %>
+	<p><%= f.label :role %></p>
+	<%= f.select :role , Role.pluck("name") %>	
+<% end %>
+<p>
+Stations assigned	
+</p>
+	<% for station in Station.find(:all) %>
+	<div>
+	<%= check_box_tag 'user[station_ids][]', station.id, @user.stations.include?(station) %>	
+	<%= station.name %>
+	</div>
+	<% end %>
+
+

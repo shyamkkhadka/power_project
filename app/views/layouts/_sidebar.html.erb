@@ -2,19 +2,22 @@
 	<h3 class="subhead">Stations Overview</h3>
 	<ul>
 		<li><%= link_to "Stations List", stations_path %></li>
+		<% if current_user.role? :admin %> 
+			<li><%= link_to "List accounting offices", accounting_offices_path %></li>
+			<li><%= link_to "List users", users_path %></li>
+		<% end %>
+	
 	</ul>
 
-
-
-	<h3 class="subhead">Admin Modules</h3>
-	<ul>
-		<li> <%= link_to  "Add User", new_user_registration_path %> </li>
-		<li><a href="">Reset Password</a></li>
-		<li> <%= link_to "Add Station", new_station_path %>  </li>
-		<li><a href="">Add Accounting Office</a></li>
-	</ul>
-
-
+	<% if current_user.role? :admin %>
+		<h3 class="subhead">Admin Modules</h3>
+		<ul>
+			<li> <%= link_to "Add Station", new_station_path %>  </li>
+			<li> <%= link_to "Add Accounting office", new_accounting_office_path %> </li>
+			<li> <%= link_to  "Add User", new_user_path %> </li>
+			<li><a href="">Reset Password</a></li>
+		</ul>
+	<% end %>
 
 	<h3 class="subhead">Reporting Modules</h3>
 	<ul>

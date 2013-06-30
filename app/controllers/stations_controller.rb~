@@ -1,5 +1,7 @@
 class StationsController < ApplicationController
   before_filter :authenticate_user!
+	load_and_authorize_resource :only => [:new, :create]
+
 
   # GET /stations
   # GET /stations.json
@@ -33,7 +35,6 @@ class StationsController < ApplicationController
     RegionalDirectorate.all.each do |rd| 
       @rd_codes.push(rd.code)  	
     end
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @station }
@@ -58,7 +59,11 @@ class StationsController < ApplicationController
     
     # Update regional directorate code name to id
     @station.regional_directorate_id = RegionalDirectorate.find_by_code(params[:station][:regional_directorate_id]).id
-    
+		@rd_codes = Array.new
+    RegionalDirectorate.all.each do |rd| 
+      @rd_codes.push(rd.code)  	
+    end    
+	
     respond_to do |format|
       if @station.save
         format.html { redirect_to @station, notice: 'Station was successfully created.' }
@@ -78,9 +83,12 @@ class StationsController < ApplicationController
     # Update regional directorate code name to id
     params[:station][:regional_directorate_id] = RegionalDirectorate.find_by_code(params[:station][:regional_directorate_id]).id
     
-    respond_to do |format|
+		# Update accounting office name to id
+		params[:station][:accounting_office_id] = AccountingOffice.find_by_name(params[:station][:accounting_office_id]).id	
+		    
+		respond_to do |format|
       if @station.update_attributes(params[:station])
-        format.html { redirect_to @station, notice: 'Station was successfully updated.' }
+        format.html { redirect_to station_batteries_path(@station), notice: 'Station was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

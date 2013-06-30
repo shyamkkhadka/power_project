@@ -1,0 +1,56 @@
+<%= form_for([@station,@rectifier]) do |f| %>
+  <% if @rectifier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rectifier.errors.count, "error") %> prohibited this rectifier from being saved:</h2>
+
+      <ul>
+      <% @rectifier.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :system_type_id %><br />
+	  <%= f.select :system_type_id , system_types, :selected => (@rectifier.new_record? ? sysetm_types.first : @rectifier.system_type.name ) %>
+  </div>
+  <div class="field">
+    <%= f.label :manufacturer_name %><br />
+    <%= f.text_field :manufacturer_name, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :serial_no %><br />
+    <%= f.text_field :serial_no, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label "No of modules" %><br />
+    <%= f.number_field :module_no, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :total_capacity %><br />
+    <%= f.number_field :total_capacity, :size => 30 %> A
+  </div>
+  <div class="field">
+    <%= f.label :first_installation_date %><br />
+    <%= f.date_select :first_installation_date %>
+  </div>
+ <div class="field">
+    <%= f.label :installation_date %><br />
+    <%= f.date_select :installation_date %>
+  </div>
+  <div class="field">
+    <%= f.label :installation_team %><br />
+    <%= f.text_field :installation_team, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :remarks %><br />
+    <%= f.text_area :remarks, :rows => 8, :cols => 43 %>
+  </div>
+  <div class="field">
+ 		<%= f.hidden_field :rectifier_id, :value => @rectifier.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

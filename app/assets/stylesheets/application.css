@@ -133,7 +133,7 @@ div#box{
 	background-color:#FFF;
 	line-height:18px;
 }
-.leftdiv{clear;left; float:left; width:200px;}
+.leftdiv{clear:left; float:left; width:200px;}
 .rightdiv{float:left; color:#369;}
 
 

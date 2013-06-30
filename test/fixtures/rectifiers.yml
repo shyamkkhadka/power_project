@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  system_type_id: 1
+  manufacturer_name: MyString
+  serial_no: MyString
+  module_no: 1
+  total_capacity: 1
+  first_installation_date: 2013-06-22
+  installation_team: MyString
+  remarks: MyText
+  station_id: 1
+
+two:
+  system_type_id: 1
+  manufacturer_name: MyString
+  serial_no: MyString
+  module_no: 1
+  total_capacity: 1
+  first_installation_date: 2013-06-22
+  installation_team: MyString
+  remarks: MyText
+  station_id: 1

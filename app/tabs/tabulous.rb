@@ -3,17 +3,27 @@ Tabulous.setup do
   tabs do
 
     batteries_tab do
-      text          { 'Batteries' }
+      text          { 'Battery' }
       link_path     { station_batteries_path }
       visible_when  { true }
       enabled_when  { true }
       active_when   { in_action('any').of_controller('batteries') }
     end
 
-     end
+
+    rectifiers_tab do
+      text          { 'Rectifier' }
+      link_path     { station_rectifiers_path }
+      visible_when  { true }
+      enabled_when  { true }
+      active_when   { in_action('any').of_controller('rectifiers') }
+    end
+	
+
+	end
 
   customize do
-
+		renderer :default
     # which class to use to generate HTML
     # :default, :html5, :bootstrap, or :bootstrap_pill
     # or create your own renderer class and reference it here

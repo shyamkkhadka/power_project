@@ -1,15 +1,28 @@
 PowerProject::Application.routes.draw do
-  
-resources :rectifers
 
-  resources :stations do
-	  resources :batteries
+  
+ resources :accounting_offices
+
+
+ resources :stations do
+	  resources :batteries 
+	  resources :rectifiers
   end
+
+ resources :batteries do 
+	  resources :battery_daily_tests
+	  resources :battery_weekly_tests
+ end
+
 
 
 	
-  #devise_for :users
-  devise_for :users, :controllers => { :sessions => "sessions" }
+
+  #devise_for :users, :controllers => { :sessions => "sessions", :registrations => "registrations" }
+	
+	# Newly added 	
+	devise_for :users, :controllers => { :registrations => "registrations" }
+	resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -67,6 +80,9 @@ resources :rectifers
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+
+#172.17.21.143
+
 
 
 end

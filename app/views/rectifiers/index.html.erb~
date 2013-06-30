@@ -1,0 +1,40 @@
+<h1>Listing rectifiers</h1>
+
+<table>
+  <tr>
+    <th>System type</th>
+    <th>Manufacturer name</th>
+    <th>Serial no</th>
+    <th>Module no</th>
+    <th>Total capacity</th>
+    <th>First installation date</th>
+    <th>Installation date</th>
+    <th>Installation team</th>
+    <th>Remarks</th>
+    <th>Station</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rectifiers.each do |rectifier| %>
+  <tr>
+    <td><%= rectifier.system_type.name %></td>
+    <td><%= rectifier.manufacturer_name %></td>
+    <td><%= rectifier.serial_no %></td>
+    <td><%= rectifier.module_no %></td>
+    <td><%= rectifier.total_capacity %></td>
+    <td><%= rectifier.first_installation_date %></td>
+    <td><%= rectifier.first_installation_date %></td>
+    <td><%= rectifier.installation_team %></td>
+    <td><%= rectifier.remarks %></td>
+    <td><%= rectifier.station_id %></td>
+    <td><%= link_to 'Edit', edit_station_rectifier_path(@station, rectifier) %></td>
+    <td><%= link_to 'Destroy',  station_battery_path(@station, rectifier), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rectifier', new_station_rectifier_path(@station) %>

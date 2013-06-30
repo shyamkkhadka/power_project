@@ -1,0 +1,30 @@
+<%= form_for([@battery, @battery_weekly_test]) do |f| %>
+  <% if @battery_weekly_test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@battery_weekly_test.errors.count, "error") %> prohibited this battery_weekly_test from being saved:</h2>
+
+      <ul>
+      <% @battery_weekly_test.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<% 
+	counter = 0
+	@battery.bank_no.times.each do   %>
+		<div> Battery bank no. #<%= counter+=1 %> </div>
+		
+	<% end %>   
+  <div class="field">
+    <%= f.label :cell_voltage %><br />
+    <%= f.text_field :cell_voltage %>
+  </div>
+  
+	<%= f.hidden_field :battery_id, :value => @battery.id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

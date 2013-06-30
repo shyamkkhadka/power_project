@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @accounting_office.name %>
+</p>
+
+<p>
+  <b>Regional directorate:</b>
+  <%= @accounting_office.regional_directorate_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_accounting_office_path(@accounting_office) %> |
+<%= link_to 'Back', accounting_offices_path %>

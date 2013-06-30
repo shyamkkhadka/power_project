@@ -1,4 +1,6 @@
 class BatteriesController < ApplicationController
+	layout "tabbed_container"
+
   # GET /batteries
   # GET /batteries.json
   def index
@@ -25,10 +27,8 @@ class BatteriesController < ApplicationController
   # GET /batteries/new.json
   def new
 		@station = Station.find(params[:station_id])
-    @battery = Battery.new
-		@system_type_names = Array.new
-		SystemType.all.each do |st| @system_type_names << st.name end 
-
+		@battery = Battery.new
+		
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @battery }
@@ -39,18 +39,17 @@ class BatteriesController < ApplicationController
   def edit
     @battery = Battery.find(params[:id])
 		@station = Station.find(params[:station_id])
-		@system_type_names = Array.new
-		SystemType.all.each do |st| @system_type_names << st.name end 
   end
 
   # POST /batteries
   # POST /batteries.json
   def create
     @battery = Battery.new(params[:battery])
-		
+		@station = Station.find(params[:station_id])
+
 		# Find system type id from system name
 		@battery.system_type_id = SystemType.find_by_name(params[:battery][:system_type_id]).id
-
+		
     respond_to do |format|
       if @battery.save
         format.html { redirect_to station_batteries_path(@battery.station), notice: 'Battery was successfully created.' }

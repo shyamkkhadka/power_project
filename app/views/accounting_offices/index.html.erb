@@ -1,0 +1,23 @@
+<h1>Listing accounting offices</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Regional directorate</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @accounting_offices.each do |accounting_office| %>
+  <tr>
+    <td><%= accounting_office.name %></td>
+    <td><%= accounting_office.regional_directorate.name %></td>
+    <td><%= link_to 'Edit', edit_accounting_office_path(accounting_office) %></td>
+    <td><%= link_to 'Destroy', accounting_office, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Accounting office', new_accounting_office_path %>

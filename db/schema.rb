@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610020907) do
+ActiveRecord::Schema.define(:version => 20130630052317) do
+
+  create_table "accounting_offices", :force => true do |t|
+    t.string   "name"
+    t.integer  "regional_directorate_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
 
   create_table "batteries", :force => true do |t|
     t.integer  "system_type_id"
@@ -27,6 +34,36 @@ ActiveRecord::Schema.define(:version => 20130610020907) do
     t.datetime "updated_at",             :null => false
   end
 
+  create_table "battery_daily_tests", :force => true do |t|
+    t.integer  "battery_id"
+    t.string   "total_voltage"
+    t.text     "visual_inspection"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "battery_weekly_tests", :force => true do |t|
+    t.string   "cell_voltage"
+    t.integer  "battery_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "rectifiers", :force => true do |t|
+    t.integer  "system_type_id"
+    t.string   "manufacturer_name"
+    t.string   "serial_no"
+    t.integer  "module_no"
+    t.integer  "total_capacity"
+    t.date     "first_installation_date"
+    t.string   "installation_team"
+    t.text     "remarks"
+    t.integer  "station_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.date     "installation_date"
+  end
+
   create_table "regional_directorates", :force => true do |t|
     t.string   "code"
     t.string   "name"
@@ -35,6 +72,22 @@ ActiveRecord::Schema.define(:version => 20130610020907) do
     t.string   "district"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
+  end
+
+  create_table "station_users", :id => false, :force => true do |t|
+    t.integer "station_id"
+    t.integer "user_id"
   end
 
   create_table "stations", :force => true do |t|
@@ -46,6 +99,16 @@ ActiveRecord::Schema.define(:version => 20130610020907) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.integer  "regional_directorate_id"
+    t.integer  "accounting_office_id"
+  end
+
+  create_table "stations_users", :id => false, :force => true do |t|
+    t.integer "station_id"
+    t.integer "user_id"
+  end
+
+  create_table "system_type", :force => true do |t|
+    t.string "name"
   end
 
   create_table "system_types", :force => true do |t|
@@ -67,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20130610020907) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

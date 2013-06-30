@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cell voltage:</b>
+  <%= @battery_weekly_test.cell_voltage %>
+</p>
+
+<p>
+  <b>Battery:</b>
+  <%= @battery_weekly_test.battery_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_battery_weekly_test_path(@battery_weekly_test) %> |
+<%= link_to 'Back', battery_weekly_tests_path %>

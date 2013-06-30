@@ -16,94 +16,139 @@
 
 /* CSS Document */
 
-body {
-	padding:0px; 
-	margin:0px;
-	background-color:#fafafa; 
-	font:11px/20px Tahoma, Arial, Helvetica, sans-serif;
-	}
 
-ul{list-style-type:none}
+ul {list-style-type: none; padding: 0; margin: 0;}
+
+
 
 /***** HEADER ******/
+h1{
+  color: #125da7;
+  font:24px  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+h2 {
+  color: #c6e04c;
+  font:18px  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.cleardiv{clear:both;}
 div#header {
 	margin:0; 
-	padding:10px;
-	height: 114px;
-	background-color:#2275a5;
-	border-bottom:3px solid #094c73;
+	padding:0px;
+	height:auto;
+	overflow:auto;
+	border-bottom:7px solid #00b8f5;
+	background-color:#ecf7f8;
 }
 
-div#header_left {
-  float: left;
-  width:200px;
-  margin:0;
+div#header_left{float:left; width:100px; padding:10px; }
+
+
+
+div#header_mid{
+	margin-left: 100px;
+	margin-right: 350px;
+	padding:0;
+	height:110px;
+	
 }
 
-div#header_left div.logo_label {
-	margin-top:0px;
-	margin-left:0px;
+div#header_mid h1 {
+  color: #125da7;
+  line-height:18px;
+  margin:10px 0 0;
+  font:24px  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-div#header_right h1 {
-  color: #fff;
-  margin-top:25px;
-  font:24px/18px  Arial,Tahoma, Helvetica;
+div#header_mid h1 a { 
+  color: #125da7;
 }
 
-div#header_right h1 a {
-  color: #fff;
+div#header_mid h2 {
+  color: #c6e04c;
+  line-height:12px;
+  font:18px  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-div#header_right h2 {
-  color: yellow;
-  font:16px Arial,Tahoma, Helvetica;
+div#header_mid span a:link{
+	color:#c6e04c;
 }
 
-div#header_right span a:link{
-	color:yellow;
-}
-div.welcome { color:#FFF !important; float:right}
+div#header_right{float:right; width:300px; margin:0; padding:20px; color:#666; text-align:center;}
+div#header_right a{text-decoration:none; color:#369;}
+div#header_right a:hover{text-decoration:none; background-color:#369; color:#FFF;}
 
-div.welcome a { color:#FFF !important; }
 
-div.welcome a:hover { text-decoration: none; background-color: none;}
 div#tabs ul li {
 	display: inline-block;
 }
 
-
+div.greenline{clear:both; width:100%; height:3px; background-color:#c6e04c; }
 /************ SIDEBAR *************/
 div#side_bar {
-	float: left; 
+	float: left;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;	
 }
 
-#side_bar .box{
-	width:218px; height:auto; padding:0px; margin-bottom:15px; 
-	color:#369; border:1px solid #fff; border-bottom:5px solid #CCC;  
-	background:url('/images/bg_box.jpg') no-repeat; background-color:#f1f1f1;
-}
-#side_bar .subhead{color:#FFF; font-weight:bold; margin:5px 10px 15px;}
-#side_bar ul { 	list-style-type: none; padding: 0; margin: 0;}
-#side_bar ul li { margin-top: 0px; border-bottom:#ddd 1px solid;  border-top:1px #f1f1f1 solid;}
-#side_bar ul li a {	display: block; width: 183px; padding: 5px 15px 5px; text-decoration: none; color: #336699; border-left:5px solid #7bc6ff; background:url('/images/bgleftmenu.jpg'); }
-#side_bar ul li a:hover { border-left:5px solid #3290d8; background-color: #DDD; color:#f28900; }
-#side_bar ul li a:focus { border-left:5px solid #3290d8; background-color:#DDD;}
+
+#side_bar .subhead{color:#b8e128; font-weight:bold; margin:20px 0px 5px; font:18px  "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
+#side_bar ul {list-style-type: none; padding: 0; margin: 0;}
+#side_bar ul li { margin-top: 0px;}
+#side_bar ul li a {display: block; width:190px; padding: 3px 10px 5px; text-decoration: none; color: #336699; border-left:5px solid #7bc6ff;}
+#side_bar ul li a:hover { border-left:5px solid #3290d8; padding-left:15px; background-color: #F9F9F9; color:#f28900; }
+
 
 
 /***** BODY ******/
 div#container {
-	margin:10px 10px 0 10px;
-	color:#46596a;
+	
+	margin:10px 10px 10px;
+	color:#787878;
+	
 }
 
 div#content {
-	margin-left: 250px;
-	background-color:#f6f6f6; 
-	padding: 1px 0 0 20px;
+	margin-left: 225px;
+	padding: 10px 40px 10px;
+	min-height:500px;
+	overflow:auto;
+	border-left:1px dashed #b8e128;
 }
 
 
+
+
+
+
+
+
+/*********************       COMMON CSS     *************************/
+
+div#box{
+	border:3px solid #EEE;
+	padding:15px;
+	overflow:auto;
+	height:auto;
+	background-color:#FFF;
+	line-height:18px;
+}
+.leftdiv{clear;left; float:left; width:200px;}
+.rightdiv{float:left; color:#369;}
+
+
+input,select, textarea{
+border-radius:5px; padding:5px; margin-top:5px; color:#595959;
+border:1px solid #CCC;
+}
+submit,button{color:#FFF; background-color:#369;
+border-radius:5px; padding:5px; margin-top:5px; 
+border:1px solid #CCC;
+}
+
+table{border:2px solid #fff; padding:5px; background-color:#FFF; width:100%;}
+td{border:1px solid #cfe5fc; margin:0; padding:3px 5px 3px;}
+th{background-color:#336699; color:#FFF; border:1px solid #eee; padding:3px 5px 3px;}
 /*
 div#side_bar div.block {
 	margin: 10px 0 10px; padding: 10px; 

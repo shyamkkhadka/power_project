@@ -19,7 +19,4 @@ class SessionsController <  Devise::SessionsController
   	puts "Login"
   end
 
-
-
-
 end

@@ -6,5 +6,5 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-SystemType.create([{ name: 'PSTN' }, { name: 'GSM' }, { name: 'CDMA' }, { name: 'IT' }, { name: 'WIMAX' } ])
+SystemType.create([{ name: 'PSTN' }, { name: 'GSM' }, { name: 'CDMA' }, { name: 'IT' }, { name: 'WIMAX' }, { name: 'Repeater'}, 									{ name: 'Optical' }] )
 RegionalDirectorate.create([{ code: 'KRD', name: 'Kathmandu Regional Directorate', city: 'Kathmandu', zone: 'Bagmati', district: 'Kathmandu'}, { code: 'CRD', name: 'Central Regional Directorate', city: 'Birgunj', zone: 'Narayani', district: 'Parsa'} ])

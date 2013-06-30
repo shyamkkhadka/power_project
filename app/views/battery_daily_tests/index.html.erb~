@@ -1,0 +1,28 @@
+<h1>Listing battery_daily_tests</h1>
+
+<table>
+  <tr>
+    <th>Battery</th>
+    <th>Total voltage</th>
+    <th>Visual inspection</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @battery_daily_tests.each do |battery_daily_test| %>
+  <tr>
+    <td><%= battery_daily_test.battery_id %></td>
+    <td><%= battery_daily_test.total_voltage %></td>
+    <td><%= battery_daily_test.visual_inspection %></td>
+    <td><%#= link_to 'Show', battery_daily_test %></td>
+    <td><%#= link_to 'Edit', edit_battery_daily_test_path(battery_daily_test) %></td>
+    <td><%#= link_to 'Destroy', battery_daily_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Battery daily test', new_battery_daily_test_path %>
+<%= link_to 'Back', station_batteries_path(@station) %>

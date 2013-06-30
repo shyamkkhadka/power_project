@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @battery %> |
-<%= link_to 'Back', batteries_path %>
+<%#= link_to 'Show', @battery %> 
+<%= link_to 'Back', station_batteries_path(@station) %>

@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'devise'
 
 gem 'tabulous'
+gem 'cancan'
 
 # for deployment on Heroku
 #gem "heroku"

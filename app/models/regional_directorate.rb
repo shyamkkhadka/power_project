@@ -4,5 +4,6 @@ class RegionalDirectorate < ActiveRecord::Base
   validates :name, :presence => true
 
   has_many :stations
+	has_many :accounting_offices
 
 end

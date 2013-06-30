@@ -13,14 +13,14 @@
 
   <div class="field">
     <%= f.label :system_type %><br />
-	  <%= f.select :system_type_id , @system_type_names %>
+	  <%= f.select :system_type_id , system_types, :selected => (@battery.new_record? ? system_types.first : @battery.system_type.name ) %>
   </div>
   <div class="field">
-    <%= f.label :company_name %><br />
+    <%= f.label "Manufacturer's name" %><br />
     <%= f.text_field :company_name, :size => 30 %>
   </div>
   <div class="field">
-    <%= f.label :bank_no %><br />
+    <%= f.label "No of banks" %><br />
     <%= f.number_field :bank_no, :size => 30 %>
   </div>
   <div class="field">
@@ -43,9 +43,7 @@
     <%= f.label :remarks %><br />
     <%= f.text_area :remarks, :rows => 8, :cols => 43 %>
   </div>
-  <div class="field">
  		<%= f.hidden_field :station_id, :value => @station.id %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

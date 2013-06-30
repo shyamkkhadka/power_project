@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cell_voltage: MyString
+  battery_id: 1
+
+two:
+  cell_voltage: MyString
+  battery_id: 1

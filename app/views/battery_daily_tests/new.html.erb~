@@ -1,0 +1,3 @@
+<h1>Daily test report entry of station : <%= @battery.station.name %>,system type <%= @battery.system_type.name %>
+<%= render 'form' %> 
+<%#= link_to 'Back', battery_daily_tests_path %>

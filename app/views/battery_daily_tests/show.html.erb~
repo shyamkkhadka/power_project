@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<h1> Battery daily test report entered on <%= @battery_daily_test.created_at %> </h1>
+<p>
+  <b>Installed system : </b>
+  <%= @battery_daily_test.battery.system_type.name %>
+</p
+
+<p>
+  <b>Total voltage:</b>
+  <%= @battery_daily_test.total_voltage %>
+</p>
+
+<p>
+  <b>Visual inspection:</b>
+  <%= @battery_daily_test.visual_inspection %>
+</p>
+
+
+<%= link_to 'Edit', edit_battery_battery_daily_test_path(@battery_daily_test.battery, @battery_daily_test) %> |
+<%= link_to 'Back', station_batteries_path(@station) %>

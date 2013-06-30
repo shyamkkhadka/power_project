@@ -1,0 +1,25 @@
+<h1>Listing battery_weekly_tests</h1>
+
+<table>
+  <tr>
+    <th>Cell voltage</th>
+    <th>Battery</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @battery_weekly_tests.each do |battery_weekly_test| %>
+  <tr>
+    <td><%= battery_weekly_test.cell_voltage %></td>
+    <td><%= battery_weekly_test.battery_id %></td>
+    <td><%= link_to 'Show', battery_weekly_test %></td>
+    <td><%= link_to 'Edit', edit_battery_weekly_test_path(battery_weekly_test) %></td>
+    <td><%= link_to 'Destroy', battery_weekly_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Battery weekly test', new_battery_weekly_test_path %>
