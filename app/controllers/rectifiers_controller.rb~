@@ -42,6 +42,7 @@ class RectifiersController < ApplicationController
 		@station = Station.find(params[:station_id])
   end
 
+	# TODO: ADD equipment_code to map between equipment table and rectifier
   # POST /rectifiers
   # POST /rectifiers.json
   def create

@@ -5,7 +5,7 @@
 	<div id="header_right">
 	<% if  user_signed_in? %>
 		Welcome, <%= current_user.email %> <br />
-		<%= link_to "Change Password", edit_users_path %> | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> 
+		<%= link_to "Change Password", edit_user_registration_path %> | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> 
 		
 	<% end %>
 	</div>

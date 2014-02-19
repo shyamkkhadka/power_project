@@ -1,0 +1,225 @@
+<%= form_for([@station, @generator]) do |f| %>
+  <% if @generator.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@generator.errors.count, "error") %> prohibited this generator from being saved:</h2>
+
+      <ul>
+      <% @generator.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="field">
+    <%= f.label :system_type %><br />
+	  <%= f.select :system_type_id , system_types, :selected => (@generator.new_record? ? system_types.first : @generator.system_type.name ) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :company_name %><br />
+    <%= f.text_field :company_name, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :model_no %><br />
+    <%= f.text_field :model_no, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br />
+		<%= f.select :gen_type, ["Soundproof", "Canopy", "Open"] %>
+  </div>
+  <div class="field">
+    <%= f.label :sound_level %><br />
+    <%= f.text_field :sound_level, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :engine_manufacturer %><br />
+    <%= f.text_field :engine_manufacturer, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :engine_model_no %><br />
+    <%= f.text_field :engine_model_no, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :cooling_type %><br />
+    <%= f.text_field :cooling_type, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :alternator_manufacturer %><br />
+    <%= f.text_field :alternator_manufacturer, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :alternator_model_no %><br />
+    <%= f.text_field :alternator_model_no, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :engine_oil_type %><br />
+    <%= f.text_field :engine_oil_type, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :oil_sumo_capacity %><br />
+    <%= f.text_field :oil_sumo_capacity, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :fuel_filter %><br />
+    <%= f.text_field :fuel_filter, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :sec_fuel_filter %><br />
+    <%= f.text_field :sec_fuel_filter, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :air_filter %><br />
+    <%= f.text_field :air_filter, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :water_filter %><br />
+    <%= f.text_field :water_filter, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :starter_battery_capacity %><br />
+    <%= f.text_field :starter_battery_capacity, :size => 30 %>
+  </div>
+
+	<div class="field">
+    <%= f.label :engine_serial_no %><br />
+    <%= f.text_field :engine_serial_no, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :alternator_serial_no %><br />
+    <%= f.text_field :alternator_serial_no, :size => 30 %>
+  </div>
+  <!--<div class="field">
+    <%#= f.label :eqp_code %><br />
+    <%#= f.text_field :eqp_code %>
+  </div>-->
+  <div class="field">
+    <%= f.label :installation_team %><br />
+    <%= f.text_field :installation_team, :size => 30 %>
+  </div>
+  <div class="field">
+    <%= f.label :first_installation_date %><br />
+    <%= f.date_select :first_installation_date %>
+  </div>
+
+	<div id="gen_dimensions" class="separator">
+		<b>Generator Dimensions</b><span>[ + ]</span>
+		<div class="contents" style="display:none">
+			<div class="field">
+  	  	<%= f.label :genset_length %><br />
+  	  	<%= f.number_field :genset_length, :size => 30 %>
+  		</div>
+  		<div class="field">
+  	  	<%= f.label :genset_height %><br />
+  	  	<%= f.number_field :genset_height, :size => 30 %>
+  		</div>
+  		<div class="field">
+  	  	<%= f.label :genset_weight %><br />
+  	  	<%= f.number_field :genset_weight, :size => 30 %>
+ 		 	</div>
+		</div>
+	</div>
+  
+	<div id="cpanel_dimensions" class="separator">
+		<b>Control Panel Dimensions </b><span class="toggle">[ + ]</span>
+		<div class="contents" style="display:none">
+			<div class="field">
+  		  <%= f.label :control_panel_length %><br />
+  		  <%= f.number_field :control_panel_length, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label :control_panel_width %><br />
+   		 	<%= f.number_field :control_panel_width, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label :control_panel_height %><br />
+   		 	<%= f.number_field :control_panel_height, :size => 30 %>
+  		</div>
+		</div>	 
+	</div>
+
+	<div id="gen_supplier_details" class="separator">
+		<b>Supplier and local agent details </b><span>[ + ]</span>
+		<div class="contents" style="display:none">
+			<div class="field">
+  		  <%= f.label "Supplier Company Name" %><br />
+  		  <%= f.text_field :supp_company_name, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Company Address" %><br />
+   		 	<%= f.text_field :supp_company_address, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Company Phone" %><br />
+   		 	<%= f.text_field :supp_company_phone, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Company Fax" %><br />
+   		 	<%= f.text_field :supp_company_fax, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Remarks" %><br />
+   		 	<%= f.text_area :supp_remarks, :rows => 8, :cols => 43 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Current Local Agent Name" %><br />
+   		 	<%= f.text_field :curr_local_agent_name, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Contact Person" %><br />
+   		 	<%= f.text_field :local_agent_contact_person, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Contact Person mobile no" %><br />
+   		 	<%= f.text_field :local_agent_mobile, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Office Phone no" %><br />
+   		 	<%= f.text_field :local_agent_office_phone, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Office Fax no" %><br />
+   		 	<%= f.text_field :local_agent_office_fax, :size => 30 %>
+  		</div>
+		</div>	 
+	</div>
+
+  <div class="field">
+    <%= f.label :remarks %><br />
+    <%= f.text_area :remarks, :rows => 8, :cols => 43 %>
+  </div>
+	<%= f.hidden_field :station_id, :value => @station.id %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+	// Observer to display cpanel dimensions on click
+	$("#cpanel_dimensions span").click(function() {
+		$("#cpanel_dimensions div.contents").is(":visible") ? $(this).html("[ + ]") : $(this).html("[ - ]");
+		$("#cpanel_dimensions div.contents").slideToggle('slow');
+	});
+
+	// Observer to display generator dimensions on click
+	$("#gen_dimensions span").click(function() {
+		$("#gen_dimensions div.contents").is(":visible") ? $(this).html("[ + ]") : $(this).html("[ - ]");
+		$("#gen_dimensions div.contents").slideToggle('slow');
+	});
+
+	// Observer to display generator dimensions on click
+	$("#gen_supplier_details span").click(function() {
+		$("#gen_supplier_details div.contents").is(":visible") ? $(this).html("[ + ]") : $(this).html("[ - ]");
+		$("#gen_supplier_details div.contents").slideToggle('slow');
+	});
+
+// Show installation team by name
+	var prePopulateData = <%= @users %>
+
+	$("#generator_installation_team").tokenInput("/users?from=team",{hintText: "Enter name here", theme: "facebook", 	
+		propertyToSearch: "name_emp_id", prePopulate: prePopulateData});
+
+</script>
+
+

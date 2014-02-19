@@ -2,6 +2,8 @@ Tabulous.setup do
 
   tabs do
 
+
+
     batteries_tab do
       text          { 'Battery' }
       link_path     { station_batteries_path }
@@ -19,6 +21,14 @@ Tabulous.setup do
       active_when   { in_action('any').of_controller('rectifiers') }
     end
 	
+
+    generators_tab do
+      text          { 'Generator' }
+      link_path     { station_generators_path }
+      visible_when  { true }
+      enabled_when  { true }
+      active_when   { in_action('any').of_controller('generators') }
+    end
 
 	end
 

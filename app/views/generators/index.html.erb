@@ -1,0 +1,78 @@
+<h1>Listing generators</h1>
+<% count = 1 
+@station.generators.each do |generator| %>
+<h2> Generator #<%= count %> </h2>
+<div class="eqp_detail">
+	<div class="leftdiv">System type </div>
+	<div class="rightdiv"><%= generator.system_type.name %></div>
+	<div class="leftdiv">Company name</div>
+	<div class="rightdiv"><%= generator.company_name %></div>
+	<div class="leftdiv">Model no</div>
+	<div class="rightdiv"><%= generator.model_no %></div>
+	<div class="leftdiv">Generator type</div>
+	<div class="rightdiv"><%= generator.gen_type %></div>
+	<div class="leftdiv">Sound level</div>
+	<div class="rightdiv"><%= generator.sound_level %></div>
+	<div class="leftdiv">Engine manufacturer</div>
+	<div class="rightdiv"><%= generator.engine_manufacturer %></div>
+	<div class="leftdiv">Engine Model no</div>
+	<div class="rightdiv"><%= generator.engine_model_no %></div>
+	<div class="leftdiv">Cooling type</div>
+	<div class="rightdiv"><%= generator.cooling_type %></div>
+	<div class="leftdiv">Alternator manufacturer</div>
+	<div class="rightdiv"><%= generator.alternator_manufacturer %></div>
+	<div class="leftdiv">Alternator model no</div>
+	<div class="rightdiv"><%= generator.alternator_model_no %></div>
+	<div class="leftdiv">Engine oil type</div>
+	<div class="rightdiv"><%= generator.engine_oil_type %></div>
+	<div class="leftdiv">Oil sumo capacity</div>
+	<div class="rightdiv"><%= generator.oil_sumo_capacity %></div>
+	<div class="leftdiv">Dimension</div>
+	<div class="rightdiv">Length: <%= generator.genset_length %> Height: <%= generator.genset_height %> Weight: <%= generator.genset_weight %></div>
+	<div class="leftdiv">Starter battery capacity</div>
+	<div class="rightdiv"><%= generator.starter_battery_capacity %></div>
+	<div class="leftdiv">Control panel dimension</div>
+	<div class="rightdiv">Length: <%= generator.control_panel_length %> Height: <%= generator.control_panel_height %> Width: <%= generator.control_panel_width %> </div>
+	<div class="leftdiv">Engine serial no</div>
+	<div class="rightdiv"><%= generator.engine_serial_no %></div>
+	<div class="leftdiv">Alternator serial no</div>
+	<div class="rightdiv"><%= generator.alternator_serial_no %></div>
+	<div class="leftdiv">Alternator serial no</div>
+	<div class="rightdiv"><%= generator.alternator_serial_no %></div>
+	<div class="leftdiv">Installation Team </div>
+	<div class="rightdiv"><%= team_members(generator) %></div>
+	<div class="leftdiv">First installation date </div>
+	<div class="rightdiv"><%= generator.first_installation_date %></div>
+	<div class="leftdiv"> Remarks </div>
+	<div class="rightdiv"><%= generator.remarks %></div>
+</div>
+
+<div class="eqp_supplier_detail"> 
+	<fieldset>
+	<legend>Supplier and Local agent  details</legend>
+	<div class="leftdiv">Supplier Company Name</div>
+	<div class="rightdiv"><%= generator.supp_company_name %></div> 
+	<div class="leftdiv">Supplier Company Address</div>
+	<div class="rightdiv"><%= generator.supp_company_address %></div> 
+	<div class="leftdiv">Supplier Company Office</div>
+	<div class="rightdiv">Phone: <%= generator.supp_company_phone %>, Fax: <%= generator.supp_company_fax %> </div> 
+	<div class="leftdiv">Remarks</div>
+	<div class="rightdiv"><%= generator.supp_remarks %></div> 
+	<div class="leftdiv">Current Local Agent Name</div>
+	<div class="rightdiv"><%= generator.curr_local_agent_name %></div> 
+	<div class="leftdiv">Local Agent Contact Person</div>
+	<div class="rightdiv"><%= generator.local_agent_contact_person %> <%= generator.local_agent_mobile %></div> 
+	<div class="leftdiv">Local Agent Office </div>
+	<div class="rightdiv"> Phone : <%= generator.local_agent_office_phone %>, Fax <%= generator.local_agent_office_fax %></div> 
+</div>
+<div style="clear:both">
+	<%= link_to_if(can?(:edit, Generator), "Edit", edit_station_generator_path(@station, generator)) {} %> |
+	<%= link_to_if(can?(:delete, Generator), "Delete", station_generator_path(@station, generator), method: :delete, 	
+	data: { confirm: 'Are you sure?' }) {} %>
+</div>
+<% count  += 1 end %>
+
+<br />
+
+<%= link_to_if(can?(:new, Generator), 'New Generator', new_station_generator_path(@station)) {} %>
+

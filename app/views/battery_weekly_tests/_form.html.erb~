@@ -1,3 +1,38 @@
+<div style="display:inline-block">
+<% @battery.banks.each_with_index do |v,i| %>
+	<div style="float:left;margin-left:5px">
+		<table id="list_<%= v.id %>"></table>
+		<div id="prowed_<%= v.id %>"></div> 
+	</div>
+
+<script type ="text/javascript">
+	var lastgridsel;
+	var bank_id = <%=v.id %>
+	jQuery("#list_<%= v.id %>").jqGrid({
+		url: "/batteries/<%= @battery.id %>/banks/<%= v.id %>",
+  	datatype: "json",
+  	mtype: 'GET',
+		height: 'auto',
+		rowNum: 24,
+		colNames:['Cell no','Per Cell Voltage'],
+  	 	colModel:[
+  	 		{name:'id',index:'id', width:60, sorttype:"int"},
+  	 		{name:'cell_voltage',index:'cell_voltage', width:218, sorttype:"float", editable:true},
+			],
+		caption: "Enter Cell Voltages, Bank #"+"<%= i + 1 %>"	,
+		editurl: "/batteries/"+'<%= @battery.id %>'+"/banks/"+'<%= v.id %>'+"/update_cell",
+		onSelectRow: function(id) { 
+				if (id && id !== lastgridsel) {
+					jQuery('#list_<%= v.id %>').jqGrid('editRow',id,true);				
+					lastgridsel = id;
+        }
+		}
+	});
+
+</script>
+<% end %>
+</div>
+
 <%= form_for([@battery, @battery_weekly_test]) do |f| %>
   <% if @battery_weekly_test.errors.any? %>
     <div id="error_explanation">
@@ -11,20 +46,9 @@
     </div>
   <% end %>
 
-	<% 
-	counter = 0
-	@battery.bank_no.times.each do   %>
-		<div> Battery bank no. #<%= counter+=1 %> </div>
-		
-	<% end %>   
-  <div class="field">
-    <%= f.label :cell_voltage %><br />
-    <%= f.text_field :cell_voltage %>
-  </div>
+<div class="actions" style="clear:both;margin-top:5px">
+    <%= submit_tag  "Submit Report" %>
+</div>
+<% end %>   
   
-	<%= f.hidden_field :battery_id, :value => @battery.id %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

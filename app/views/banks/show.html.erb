@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Total voltage:</b>
+  <%= @bank.total_voltage %>
+</p>
+
+<p>
+  <b>Visual inpsection:</b>
+  <%= @bank.visual_inpsection %>
+</p>
+
+<p>
+  <b>Cells:</b>
+  <%= @bank.cells %>
+</p>
+
+<p>
+  <b>Battery:</b>
+  <%= @bank.battery_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_bank_path(@bank) %> |
+<%= link_to 'Back', banks_path %>

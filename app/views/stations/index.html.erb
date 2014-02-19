@@ -1,19 +1,34 @@
 <b class="notice"><%#= notice %></b>
 <h1> Listing power stations </h1>
-<!-- <div> Regional Directorate <%= select_tag "rd_code", options_for_select(regional_directorates.push('All'), "All") %> </div> 
-<div> Accounting Office <%#= select_tag "acc_office", options_for_select(acc_offices(s.push('All'), "All") %> </div>  -->	
-<div id="box">
 
-	<ul>
-	<% @stations.each do |station| %>
-			<li>
-				<%= link_to station.name, station_batteries_path(station) %> 
-				<%= link_to 'Edit', edit_station_path(station) %> | <%= link_to 'Delete', station, method: :delete, data: { confirm: 'Are you sure?' } %>
-			</li>
+<% if current_user.role? :admin %>
+	<span> Regional Directorate 
+<select id = "rd_code">
+	<option value = "ALL"> ALL </option>
+	<% RegionalDirectorate.all.each do |rd| %>
+		<option value = "<%= rd.id %>"><%= rd.code %> </option>
 	<% end %>
-	</ul>   
-	
-	
+</select>
+</span>
+ <span> Accounting Offices
 
-</div>
+<select id = "acc_office">
+	<option value = "ALL"> ALL </option>
+	<% AccountingOffice.all.each do |ofc| %>
+		<option value = "<%= ofc.id %>"><%= ofc.name %> </option>
+	<% end %>
+</select>
+</span>  
+<% end %>
+ 
+	<div id = "stations">
+		<!-- Load station name list here -->
+	</div>
 
+<script type="text/javascript">
+		$(document).ready(function() {
+			$("#stations").load("/stations/list");
+		});
+
+	</script>	
+	

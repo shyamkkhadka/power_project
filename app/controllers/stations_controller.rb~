@@ -1,12 +1,22 @@
 class StationsController < ApplicationController
   before_filter :authenticate_user!
-	load_and_authorize_resource :only => [:new, :create]
-
+	load_and_authorize_resource :only => [:new, :create, :edit]
 
   # GET /stations
   # GET /stations.json
   def index
-    @stations = Station.all
+		
+		# Reqeust is for listing stations under selected Accounting Office
+		if params[:from] && params[:acc_office] 
+			@stations = AccountingOffice.find(params[:acc_office]).stations
+		else
+	    if current_user.role? :admin
+				@stations = Station.all 
+			else
+				@stations = current_user.stations
+			end
+
+		end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,12 +39,7 @@ class StationsController < ApplicationController
   # GET /stations/new.json
   def new
     @station = Station.new
-    
-    # Create an array of RD codes 
-    @rd_codes = Array.new
-    RegionalDirectorate.all.each do |rd| 
-      @rd_codes.push(rd.code)  	
-    end
+   
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @station }
@@ -56,17 +61,16 @@ class StationsController < ApplicationController
   # POST /stations.json
   def create
     @station = Station.new(params[:station])
-    
-    # Update regional directorate code name to id
-    @station.regional_directorate_id = RegionalDirectorate.find_by_code(params[:station][:regional_directorate_id]).id
-		@rd_codes = Array.new
-    RegionalDirectorate.all.each do |rd| 
-      @rd_codes.push(rd.code)  	
-    end    
-	
+   
     respond_to do |format|
       if @station.save
-        format.html { redirect_to @station, notice: 'Station was successfully created.' }
+				
+				# By default admin user is owner of each newly created station
+				admin_user = User.find_by_role("admin") 				
+				admin_user.stations << @station
+				admin_user.save
+				
+				format.html { redirect_to @station, notice: 'Station was successfully created.' }
         format.json { render json: @station, status: :created, location: @station }
       else
         format.html { render action: "new" }
@@ -80,13 +84,7 @@ class StationsController < ApplicationController
   def update
     @station = Station.find(params[:id])
     
-    # Update regional directorate code name to id
-    params[:station][:regional_directorate_id] = RegionalDirectorate.find_by_code(params[:station][:regional_directorate_id]).id
-    
-		# Update accounting office name to id
-		params[:station][:accounting_office_id] = AccountingOffice.find_by_name(params[:station][:accounting_office_id]).id	
-		    
-		respond_to do |format|
+   	respond_to do |format|
       if @station.update_attributes(params[:station])
         format.html { redirect_to station_batteries_path(@station), notice: 'Station was successfully updated.' }
         format.json { head :no_content }
@@ -108,4 +106,33 @@ class StationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+	# List stations using group by combination of RD and accounting office
+  # GET /stations/list 
+  def list
+
+		
+		# Display all the stations if not chosen particular account office by default
+		# group_by_rd is for sorting based on RD only
+		# group_by_rd and group_by_ofc represent sorting based on RD as well as Acc Office
+		if params[:group_by_rd] && params[:group_by_rd] != 'ALL'
+			@stations = RegionalDirectorate.find(params[:group_by_rd]).stations
+
+			if params[:group_by_ofc] && params[:group_by_ofc] != 'ALL'
+				# TODO: Better modify sql to find by office id as well as RD id
+				# eg. AccountingOffice.find(:id => params[:group_by_ofc], :regional_directorate_id => RegionalDirectorate.find(params[:group_by_rd])
+				@stations = AccountingOffice.find(params[:group_by_ofc]).stations	
+			else
+				@stations = RegionalDirectorate.find(params[:group_by_rd]).stations	
+			end
+
+		else
+			@stations = current_user.stations
+		end
+		
+
+
+	render :layout => false		
+ end
+
 end

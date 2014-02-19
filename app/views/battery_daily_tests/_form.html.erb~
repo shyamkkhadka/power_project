@@ -1,34 +1,13 @@
+
 <%= form_for([@battery, @battery_daily_test]) do |f| %>
-  <% if @battery_daily_test.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@battery_daily_test.errors.count, "error") %> prohibited this battery_daily_test from being saved:</h2>
-
-      <ul>
-      <% @battery_daily_test.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+  <% @banks.each do |bank| %>
+		Bank ID : <%= bank.id %>
+     <%= fields_for "banks[#{bank.id}]", bank do |g| %>
+    	<p>Total Voltage <%= g.text_field :total_voltage %></p>
+    	<p>Visual Inspection <%= g.text_field :visual_inspection %></p>
+    	<%= g.hidden_field :bank_id, :value => bank.id %></p>
   <% end %>
-
-	
-  <%= f.hidden_field :battery_id, :value => @battery.id %>
-	<% 
-	counter = 0
-	@battery.bank_no.times.each do   %>
-		<div> Battery bank no. #<%= counter+=1 %> </div>
-		<div class="field">
-    <%= f.label :total_voltage %><br />
-    <%= f.text_field :total_voltage, :size => 30 %>
-  </div>
-  <div class="field">
-    <%= f.label :visual_inspection %><br />
-    <%= f.text_area :visual_inspection, :rows => 8, :cols => 43 %>
-  </div>
-	<% end %>   
-
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <% end %>
+		<p> <%= f.submit %> </p>
 <% end %>
+

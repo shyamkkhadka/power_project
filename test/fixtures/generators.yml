@@ -1,0 +1,63 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  company_name: MyString
+  model_no: MyString
+  type: 
+  sound_level: MyString
+  engine_manufacturer: MyString
+  engine_model_no: MyString
+  cooling_type: MyString
+  alternator_manufacturer: MyString
+  alternator_model_no: MyString
+  engine_oil_type: MyString
+  oil_sumo_capacity: MyString
+  fuel_filter: MyString
+  sec_fuel_filter: MyString
+  air_filter: MyString
+  water_filter: MyString
+  genset_length: 1
+  genset_height: 1
+  genset_weight: 1
+  starter_battery_capacity: MyString
+  control_panel_length: 1
+  control_panel_width: 1
+  control_panel_height: 1
+  engine_serial_no: MyString
+  alternator_serial_no: MyString
+  eqp_code: MyString
+  system_type_id: 1
+  station_id: 1
+  installation_team: MyString
+  first_installation_date: 2013-08-23
+
+two:
+  company_name: MyString
+  model_no: MyString
+  type: 
+  sound_level: MyString
+  engine_manufacturer: MyString
+  engine_model_no: MyString
+  cooling_type: MyString
+  alternator_manufacturer: MyString
+  alternator_model_no: MyString
+  engine_oil_type: MyString
+  oil_sumo_capacity: MyString
+  fuel_filter: MyString
+  sec_fuel_filter: MyString
+  air_filter: MyString
+  water_filter: MyString
+  genset_length: 1
+  genset_height: 1
+  genset_weight: 1
+  starter_battery_capacity: MyString
+  control_panel_length: 1
+  control_panel_width: 1
+  control_panel_height: 1
+  engine_serial_no: MyString
+  alternator_serial_no: MyString
+  eqp_code: MyString
+  system_type_id: 1
+  station_id: 1
+  installation_team: MyString
+  first_installation_date: 2013-08-23

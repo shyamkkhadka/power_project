@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  supp_company_name: MyString
+  supp_company_address: MyString
+  supp_company_phone: MyString
+  supp_company_fax: MyString
+  supp_remarks: MyText
+  curr_local_agent_name: MyString
+  local_agent_contact_person: MyString
+  local_agent_mobile: 1
+  local_agent_office_phone: MyString
+  local_agent_office_fax: MyString
+  equipment_code: MyString
+
+two:
+  supp_company_name: MyString
+  supp_company_address: MyString
+  supp_company_phone: MyString
+  supp_company_fax: MyString
+  supp_remarks: MyText
+  curr_local_agent_name: MyString
+  local_agent_contact_person: MyString
+  local_agent_mobile: 1
+  local_agent_office_phone: MyString
+  local_agent_office_fax: MyString
+  equipment_code: MyString

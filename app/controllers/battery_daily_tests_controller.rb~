@@ -33,7 +33,7 @@ class BatteryDailyTestsController < ApplicationController
   def new
     @battery_daily_test = BatteryDailyTest.new
 		@battery = Battery.find(params[:battery_id])
-		@station = @battery.station
+		@banks = @battery.banks
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,20 +45,23 @@ class BatteryDailyTestsController < ApplicationController
   def edit
     @battery_daily_test = BatteryDailyTest.find(params[:id])
 		@battery = Battery.find(params[:battery_id])
+		@banks = @battery.banks
   end
 
   # POST /battery_daily_tests
   # POST /battery_daily_tests.json
   def create
-    @battery_daily_test = BatteryDailyTest.new(params[:battery_daily_test])
-
+		battery = Battery.find(params[:battery_id])
+		params[:banks].each_value do |test|
+			battery.battery_daily_tests.build(test) unless test.values.all?(&:blank?)
+		end
     respond_to do |format|
-      if @battery_daily_test.save
-        format.html { redirect_to station_batteries_path(@battery_daily_test.battery.station), notice: 'Battery daily test was successfully created.' }
-        format.json { render json: @battery_daily_test, status: :created, location: @battery_daily_test }
+      if battery.save
+        format.html { redirect_to station_batteries_path(battery.station), notice: 'Battery daily test was successfully created.' }
+        #format.json { render json: @battery_daily_test, status: :created, location: @battery_daily_test }
       else
         format.html { render action: "new" }
-        format.json { render json: @battery_daily_test.errors, status: :unprocessable_entity }
+        #format.json { render json: @battery_daily_test.errors, status: :unprocessable_entity }
       end
     end
   end

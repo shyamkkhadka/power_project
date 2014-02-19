@@ -1,4 +1,4 @@
-<h3><%= @user.name %></h3>
+<h3><%#= @user.name %></h3>
  
 <%= link_to_if(can?(:update,@user), "Edit", edit_user_path(@user)) %> |
 <%= link_to_if(can?(:delete, @user), "Delete", user_path(@user), :confirm => "Are you sure?", :method => :delete) {} %>
@@ -10,9 +10,31 @@
 			<td><%= @user.email %></td>
 		</tr>
 		<tr>
+			<td class="oce-first">Full name:</td>
+			<td><%= @user.full_name %></td>
+		</tr>
+		<tr>
 			<td class="oce-first">Role:</td>
 			<td><%= @user.roles.first.name %></td>
 		</tr>
+		<tr>
+			<td class="oce-first">Employee ID :</td>
+			<td> <%= @user.emp_id %> </td>
+		</tr>
+		<tr>
+			<td class="oce-first">Designation :</td>
+			<td> <%= @user.designation %> </td>
+		</tr>
+		<tr>
+		<tr>
+			<td class="oce-first">Cell Number :</td>
+			<td> <%= @user.cell_no %> </td>
+		</tr>
+		<tr>
+			<td class="oce-first">Working Office :</td>
+			<td> <%= @user.working_office %> </td>
+		</tr>
+
 	<% if can?(:see_timestamps,User) %>
 		<tr>
 			<td class="oce-first">Created at:</td>
@@ -26,6 +48,11 @@
 			<td class="oce-first">Sign In Count:</td>
 			<td><%= @user.sign_in_count %></td>
 		</tr>
+		<tr>
+			<td class="oce-first">Stations assigned :</td>
+			<td> <%= @user.stations.pluck(:name).join(",") %> </td>
+		</tr>
+
 	<% end %>
 	</tbody>
 </table>

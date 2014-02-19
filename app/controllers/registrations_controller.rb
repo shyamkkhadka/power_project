@@ -34,6 +34,7 @@ class RegistrationsController < Devise::RegistrationsController
 
 	def create
     @user = User.new(params[:user])
+ 		@user.name_emp_id = @user.full_name + '-' + @user.emp_id.to_s
     if @user.save 
 			@user.roles.push(Role.find_by_name(@user.role))
 			@user.save

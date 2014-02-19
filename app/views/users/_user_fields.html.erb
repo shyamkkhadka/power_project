@@ -4,22 +4,55 @@
 
 <p><%#= f.label :last_name %></p>
 <p><%#= f.text_field :last_name %></p>-->
- 
-<p><%= f.label :email %></p>
-<p><%= f.text_field :email %></p>
+
+  <p><%= f.label :full_name %></p>
+	<p><%= f.text_field :full_name %></p>
  
 <% if can? :read, Role %>
 	<p><%= f.label :role %></p>
-	<%= f.select :role , Role.pluck("name") %>	
+	<%= f.select :role , Role.pluck(:name) %>	
 <% end %>
-<p>
-Stations assigned	
-</p>
-	<% for station in Station.find(:all) %>
-	<div>
-	<%= check_box_tag 'user[station_ids][]', station.id, @user.stations.include?(station) %>	
-	<%= station.name %>
-	</div>
-	<% end %>
 
+<p> <%= f.label "Employee ID" %></p>
+<p> <%= f.text_field :emp_id, :size => 30 %></p>
+
+<p> <%= f.label :designation %></p>
+<p> <%= f.text_field :designation, :size => 30 %></p
+
+<p> <%= f.label :cell_no %></p>
+<p> <%= f.number_field :cell_no, :size => 30 %></p
+
+<p> <%= f.label "Working Office" %></p>
+<p> <%= f.text_field :working_office, :size => 30 %></p>
+
+<div id = "regional_directorates" style="display:none">
+	Regional Directorates
+	<%#= select_tag "rds",options_for_select(regional_directorates) %>
+	<p>
+		<select id = "rds">
+		 <% RegionalDirectorate.all.each do |rd| %>
+			<option value = "<%= rd.id %>"><%= rd.code %> </option>
+		<% end %>
+		</select>
+	</p>
+</div>
+
+
+<div id = "account_offices" style="display:none">
+	Accounting offices
+	<select class = "offices">
+		
+	</select>
+
+</div>
+
+
+<div id="station_lists" style="display:none">
+	Stations assigned	
+	<%# for station in Station.find(:all) %>
+			<%#= check_box_tag 'user[station_ids][]', station.id, @user.stations.include?(station) %>	
+			<%#= station.name %>
+		<% #end %>
+</div>	
+	
 

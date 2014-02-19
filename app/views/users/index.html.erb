@@ -1,10 +1,22 @@
-<!-- table header stuff here -->
-Users
+<h1>Listing Users</h1>
+
+<table class="power">
+  <tr>
+		<th>Employee ID</th>
+		<th>Full Name</th>
+    <th>Working Office</th>
+    <!--<th>User Role</th>-->
+  </tr>
 
 <% @users.each do |u| %>
-    <div><%= link_to_if(can?(:read, User), "#{u.email}", user_path(u.id)) {} %></div>
-    <div><%= "#{u.email}" %></div>
-    <div><%= "#{u.roles.collect{|r| r.name}}" %></div>
-    <div><%= link_to_if(can?(:edit, User), "Edit", edit_user_path(u.id)) {} %></div>
-    <div><%= link_to_if(can?(:delete, u), "Delete", u, :confirm => "Are you sure?", :method => :delete) {} %></div>
+  <tr>
+	  <td><%= link_to_if(can?(:read, User), "#{u.emp_id}", user_path(u.id)) {} %></td>
+	  <td><%= u.full_name %></td>
+    <!--<td><%= link_to_if(can?(:read, User), "#{u.email}", user_path(u.id)) {} %></td>-->
+	  <td><%= u.working_office %></td>
+    <!--<td><%#= u.roles.first.name %><%#= "#{u.roles.collect{|r| r.name}}" %></td>-->
+  </tr>
 <% end %>
+</table>
+
+

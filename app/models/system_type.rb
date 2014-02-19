@@ -3,5 +3,6 @@ class SystemType < ActiveRecord::Base
 	
 	has_many :batteries
 	has_many :rectifiers
+	has_many :generators
 
 end

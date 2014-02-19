@@ -1,10 +1,9 @@
 		<div id = "stations_overview">
-			<h1>General information of <%= @station.name %> </h1>
-	
-			<div id="box">
+			<h1> <%= @station.name %> </h1>
+			<div class="box"  style="display:none" >
 			  <div class="leftdiv">Incharge name</div>
 			  <div class="rightdiv">: <%= @station.inc_name %></div><br />
-	  
+  
 			  <div class="leftdiv">Incharge cell number</div>
 			  <div class="rightdiv">: <%= @station.inc_cell %></div><br />
 	  
@@ -13,6 +12,9 @@
 	  
 			  <div class="leftdiv">Regional Directorate</div>
 			  <div class="rightdiv">: <%= @station.regional_directorate.name %></div><br />
+	   		
+				<div class="leftdiv">Accounting Office </div>
+			  <div class="rightdiv">: <%= @station.accounting_office.name %></div><br />
 	  
 			  <div class="leftdiv">Zone/ District/ City</div>
 			  <div class="rightdiv">: <%= @station.regional_directorate.zone %>, <%= @station.regional_directorate.district %>, <%= @station.regional_directorate.city %></div><br />
@@ -23,6 +25,6 @@
 			</div>
 		</div>
 
-		<h1>Equipment details </h1>
-	
+		<h>Equipment details </h1>
+
 

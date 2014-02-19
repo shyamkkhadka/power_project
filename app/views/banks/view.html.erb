@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+
+   <%= javascript_include_tag 'dhtmlx/dhtmlxcommon.js' %>
+        <%= javascript_include_tag 'dhtmlx/dhtmlxgrid.js' %>
+        <%= javascript_include_tag 'dhtmlx/dhtmlxgridcell.js' %>
+        <%= javascript_include_tag 'dhtmlx/dhtmlxdataprocessor.js' %>
+
+        <%= stylesheet_link_tag 'dhtmlx/dhtmlxgrid.css' %>
+        <%= stylesheet_link_tag 'dhtmlx/skins/dhtmlxgrid_dhx_skyblue.css' %>
+<script>
+
+
+    </head>
+    <body>
+     <div id="grid_here" style="width:600px; height:400px;">
+        </div>
+        <script type="text/javascript" charset="utf-8">
+            var grid = new dhtmlXGridObject("grid_here");
+            //grid.setImagePath("/javascripts/codebase/imgs/");
+						grid.setImagePath("/images/dhtmlx/imgs/");
+
+            grid.setHeader("Cell no, Cell Voltage");
+            grid.setInitWidths("100,100,*");
+            grid.setSkin("dhx_skyblue");
+            grid.init();
+
+						dp = new dataProcessor("/batteries/1/banks/dbaction.xml");
+
+            dp.init(grid);
+
+
+        </script>
+        <input type="button" value="Add" onclick="grid.addRow(grid.uid(),'cell entry')">
+        <input type="button" value="Delete" onclick="grid.deleteSelectedRows()">
+
+
+
+
+    </body>
+</html>

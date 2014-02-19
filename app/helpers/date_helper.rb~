@@ -1,0 +1,9 @@
+# Helper module to convert english date to nepali and vice-versa
+module DateHelper
+	
+	# List all system types availaible in Nepal Telecom
+	def system_types
+		SystemType.pluck("name")
+	end
+
+end

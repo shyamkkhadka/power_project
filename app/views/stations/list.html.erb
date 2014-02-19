@@ -1,0 +1,9 @@
+<ul>
+	<% @stations.each do |station| %>
+			<li>
+				<%= link_to station.name, station_batteries_path(station) %> 
+    		<%= link_to_if(can?(:edit, Station), "Edit |", edit_station_path(station)) {} %>  <%= link_to_if(can?(:delete, Station), 'Delete', station, method: :delete, data: { confirm: 'Are you sure?' }) {} %>
+			</li>
+	<% end %>
+	</ul>   
+	

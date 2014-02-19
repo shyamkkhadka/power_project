@@ -25,13 +25,13 @@
   </div>
 	<div class="field">
     <%= f.label :regional_directorate %><br />
-    <%= f.select :regional_directorate_id , regional_directorates, :selected => (@station.new_record? ? regional_directorates.first : @station.regional_directorate.code )  %>
-  </div>
+   	<%= f.select :regional_directorate_id, options_from_collection_for_select(RegionalDirectorate.all,"id","code", @station.new_record? ? regional_directorates.first : @station.regional_directorate.id) %>  
+	</div>
 
 	<div class="field">
     <%= f.label :Accounting_Office %><br />
-    <%= f.select :accounting_office_id , @station.new_record? ? RegionalDirectorate.first.accounting_offices.pluck(:name) : acc_offices(@station.regional_directorate.code), :selected => (@station.new_record? ? RegionalDirectorate.first.accounting_offices.first.name : @station.accounting_office.name) %>
-  </div>
+		<%= f.select :accounting_office_id , options_from_collection_for_select(@station.new_record? ? RegionalDirectorate.first.accounting_offices : @station.regional_directorate.accounting_offices, "id", "name", @station.new_record? ? RegionalDirectorate.first.accounting_offices.first : @station.accounting_office.id ) %>
+	</div>
     
 	<div class="field">
     <%= f.label "Incharge address" %><br />
@@ -45,3 +45,14 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<script type = "text/javascript">
+	$(document).ready(function() {
+		$("#station_regional_directorate_id").change(function() {
+			listAccOffices($("#station_regional_directorate_id option:selected").val(), "station_add");
+		});
+		
+	});
+	</script>
+

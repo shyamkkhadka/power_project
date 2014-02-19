@@ -11,13 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627004543) do
+ActiveRecord::Schema.define(:version => 20130830092015) do
 
   create_table "accounting_offices", :force => true do |t|
     t.string   "name"
     t.integer  "regional_directorate_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+  end
+
+  create_table "banks", :force => true do |t|
+    t.string   "total_voltage"
+    t.text     "visual_inpsection"
+    t.text     "cells"
+    t.integer  "battery_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "batteries", :force => true do |t|
@@ -32,6 +41,14 @@ ActiveRecord::Schema.define(:version => 20130627004543) do
     t.integer  "station_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.decimal  "batt_rack_length"
+    t.decimal  "batt_rack_width"
+    t.decimal  "batt_rack_height"
+    t.decimal  "batt_rack_weight"
+    t.decimal  "cell_length"
+    t.decimal  "cell_width"
+    t.decimal  "cell_height"
+    t.decimal  "cell_weight"
   end
 
   create_table "battery_daily_tests", :force => true do |t|
@@ -47,6 +64,59 @@ ActiveRecord::Schema.define(:version => 20130627004543) do
     t.integer  "battery_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "bank_id"
+  end
+
+  create_table "equipment", :force => true do |t|
+    t.string   "supp_company_name"
+    t.string   "supp_company_address"
+    t.string   "supp_company_phone"
+    t.string   "supp_company_fax"
+    t.text     "supp_remarks"
+    t.string   "curr_local_agent_name"
+    t.string   "local_agent_contact_person"
+    t.integer  "local_agent_mobile"
+    t.string   "local_agent_office_phone"
+    t.string   "local_agent_office_fax"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "equipmentable_id"
+    t.string   "equipmentable_type"
+  end
+
+  create_table "generators", :force => true do |t|
+    t.string   "company_name"
+    t.string   "model_no"
+    t.string   "gen_type"
+    t.string   "sound_level"
+    t.string   "engine_manufacturer"
+    t.string   "engine_model_no"
+    t.string   "cooling_type"
+    t.string   "alternator_manufacturer"
+    t.string   "alternator_model_no"
+    t.string   "engine_oil_type"
+    t.string   "oil_sumo_capacity"
+    t.string   "fuel_filter"
+    t.string   "sec_fuel_filter"
+    t.string   "air_filter"
+    t.string   "water_filter"
+    t.integer  "genset_length"
+    t.integer  "genset_height"
+    t.integer  "genset_weight"
+    t.string   "starter_battery_capacity"
+    t.integer  "control_panel_length"
+    t.integer  "control_panel_width"
+    t.integer  "control_panel_height"
+    t.string   "engine_serial_no"
+    t.string   "alternator_serial_no"
+    t.string   "eqp_code"
+    t.integer  "system_type_id"
+    t.integer  "station_id"
+    t.string   "installation_team"
+    t.date     "first_installation_date"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.text     "remarks"
   end
 
   create_table "rectifiers", :force => true do |t|
@@ -62,6 +132,14 @@ ActiveRecord::Schema.define(:version => 20130627004543) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.date     "installation_date"
+    t.decimal  "cab_length"
+    t.decimal  "cab_width"
+    t.decimal  "cab_height"
+    t.decimal  "cab_weight"
+    t.decimal  "module_length"
+    t.decimal  "module_width"
+    t.decimal  "module_height"
+    t.decimal  "module_weight"
   end
 
   create_table "regional_directorates", :force => true do |t|
@@ -85,6 +163,11 @@ ActiveRecord::Schema.define(:version => 20130627004543) do
     t.integer "user_id"
   end
 
+  create_table "station_users", :id => false, :force => true do |t|
+    t.integer "station_id"
+    t.integer "user_id"
+  end
+
   create_table "stations", :force => true do |t|
     t.string   "name"
     t.string   "inc_name"
@@ -95,6 +178,11 @@ ActiveRecord::Schema.define(:version => 20130627004543) do
     t.datetime "updated_at",              :null => false
     t.integer  "regional_directorate_id"
     t.integer  "accounting_office_id"
+  end
+
+  create_table "stations_users", :id => false, :force => true do |t|
+    t.integer "station_id"
+    t.integer "user_id"
   end
 
   create_table "system_type", :force => true do |t|
@@ -121,6 +209,12 @@ ActiveRecord::Schema.define(:version => 20130627004543) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "role"
+    t.string   "full_name"
+    t.integer  "emp_id"
+    t.string   "designation"
+    t.string   "working_office"
+    t.integer  "cell_no"
+    t.string   "name_emp_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

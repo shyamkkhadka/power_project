@@ -35,6 +35,7 @@ class Ability
 			can :manage, :all
       can :see_timestamps, User
 		elsif user.role? :station_user
+		  can :read, Battery 
 			puts " I am station user"    
 		elsif user.role? :normal
 			puts " I am normal user"    

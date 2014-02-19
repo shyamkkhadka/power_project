@@ -1,28 +1,31 @@
-<h1>Listing battery_daily_tests</h1>
+<h1>Daily test report of station : <%= @battery.station.name %>,system type <%= @battery.system_type.name %></h1>
 
-<table>
-  <tr>
-    <th>Battery</th>
-    <th>Total voltage</th>
-    <th>Visual inspection</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="leftdiv">
+	Enter date
+</div>
+<div class="rightdiv">
+	<input type="text" id = "date_batt_daily_test"/>
+</div>
 
-<% @battery_daily_tests.each do |battery_daily_test| %>
-  <tr>
-    <td><%= battery_daily_test.battery_id %></td>
-    <td><%= battery_daily_test.total_voltage %></td>
-    <td><%= battery_daily_test.visual_inspection %></td>
-    <td><%#= link_to 'Show', battery_daily_test %></td>
-    <td><%#= link_to 'Edit', edit_battery_daily_test_path(battery_daily_test) %></td>
-    <td><%#= link_to 'Destroy', battery_daily_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<div class="leftdiv">
+	<input type="button" id = "batt_daily_report" value="View Report"/>
+</div>
 
-<br />
+<div id = "batt_daily_test_container"> 
+	<!-- Load daily test report here -->
+</div>
 
-<%#= link_to 'New Battery daily test', new_battery_daily_test_path %>
-<%= link_to 'Back', station_batteries_path(@station) %>
+<script type="text/javascript">
+	$( "#date_batt_daily_test" ).datepicker({dateFormat: 'dd-mm-yy'});
+	// 	Show battery daily test report after clicking
+	$("#batt_daily_report").click(function () {
+		var date = $("#date_batt_daily_test").val();
+		if(date == "") {
+			$("#batt_daily_test_container").append("<div style='color:red'>Please enter a date</div>");
+		}
+		else {
+			$("#batt_daily_test_container").load("/batteries/"+<%= @battery.id %>+"/daily_report_list?date="+date);
+
+		}
+	});
+</script>

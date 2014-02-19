@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :system_type_id %><br />
-	  <%= f.select :system_type_id , system_types %>
+	  <%= f.select :system_type_id , system_types, :selected => (@rectifier.new_record? ? system_types.first : @rectifier.system_type.name ) %>
   </div>
   <div class="field">
     <%= f.label :manufacturer_name %><br />
@@ -35,14 +35,108 @@
     <%= f.label :first_installation_date %><br />
     <%= f.date_select :first_installation_date %>
   </div>
- <div class="field">
-    <%= f.label :installation_date %><br />
-    <%= f.date_select :installation_date %>
-  </div>
   <div class="field">
     <%= f.label :installation_team %><br />
     <%= f.text_field :installation_team, :size => 30 %>
   </div>
+
+ 	<div class="field">
+    <%= f.label :installation_date %><br />
+    <%= f.date_select :installation_date %>
+  </div>
+
+	<div id="cab_dimensions" class="separator">
+		<b>Cabinet Dimensions</b><span class="toggle">[ + ]</span>
+		<div class="contents" style="display:none">
+			<div class="field">
+  	  	<%= f.label :cab_length %><br />
+  	  	<%= f.number_field :cab_length, :size => 30 %>
+  		</div>
+  		<div class="field">
+  	  	<%= f.label :cab_width %><br />
+  	  	<%= f.number_field :cab_width, :size => 30 %>
+  		</div>
+  		<div class="field">
+  	  	<%= f.label :cab_height %><br />
+  	  	<%= f.number_field :cab_height, :size => 30 %>
+ 		 	</div>
+			<div class="field">
+  	  	<%= f.label :cab_weight %><br />
+  	  	<%= f.number_field :cab_weight, :size => 30 %>
+ 		 	</div>
+		</div>
+	</div>
+  
+	<div id="module_dimensions" class="separator">
+		<b>Cabinet Dimensions</b><span class="toggle">[ + ]</span>
+		<div class="contents" style="display:none">
+			<div class="field">
+  	  	<%= f.label :module_length %><br />
+  	  	<%= f.number_field :module_length, :size => 30 %>
+  		</div>
+  		<div class="field">
+  	  	<%= f.label :module_width %><br />
+  	  	<%= f.number_field :module_width, :size => 30 %>
+  		</div>
+  		<div class="field">
+  	  	<%= f.label :module_height %><br />
+  	  	<%= f.number_field :module_height, :size => 30 %>
+ 		 	</div>
+			<div class="field">
+  	  	<%= f.label :module_weight %><br />
+  	  	<%= f.number_field :module_weight, :size => 30 %>
+ 		 	</div>
+		</div>
+	</div>
+  
+
+	<div id="rectifier_supplier_details" class="separator">
+		<b>Supplier and local agent details </b><span class="toggle">[ + ]</span>
+		<div class="contents" style="display:none">
+			<div class="field">
+  		  <%= f.label "Supplier Company Name" %><br />
+  		  <%= f.text_field :supp_company_name, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Company Address" %><br />
+   		 	<%= f.text_field :supp_company_address, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Company Phone" %><br />
+   		 	<%= f.text_field :supp_company_phone, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Company Fax" %><br />
+   		 	<%= f.text_field :supp_company_fax, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Remarks" %><br />
+   		 	<%= f.text_area :supp_remarks, :rows => 8, :cols => 43 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Current Local Agent Name" %><br />
+   		 	<%= f.text_field :curr_local_agent_name, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Contact Person" %><br />
+   		 	<%= f.text_field :local_agent_contact_person, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Contact Person mobile no" %><br />
+   		 	<%= f.text_field :local_agent_mobile, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Office Phone no" %><br />
+   		 	<%= f.text_field :local_agent_office_phone, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Office Fax no" %><br />
+   		 	<%= f.text_field :local_agent_office_fax, :size => 30 %>
+  		</div>
+		</div>	 
+	</div>
+
+
   <div class="field">
     <%= f.label :remarks %><br />
     <%= f.text_area :remarks, :rows => 8, :cols => 43 %>
@@ -54,3 +148,35 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+
+	// Observer to display rectifier cabinet dimensions on click
+	$("#cab_dimensions span").click(function() {
+		$("#cab_dimensions div.contents").is(":visible") ? $(this).html("[ + ]") : $(this).html("[ - ]");
+		$("#cab_dimensions div.contents").slideToggle('slow');
+	});
+
+	// Observer to display rectifier module dimensions on click
+	$("#module_dimensions span").click(function() {
+		$("#module_dimensions div.contents").is(":visible") ? $(this).html("[ + ]") : $(this).html("[ - ]");
+		$("#module_dimensions div.contents").slideToggle('slow');
+	});
+	
+	
+	// Observer to display rectifier supplier/local_agent details on click
+	$("#rectifier_supplier_details span").click(function() {
+		$("#rectifier_supplier_details div.contents").is(":visible") ? $(this).html("[ + ]") : $(this).html("[ - ]");
+		$("#rectifier_supplier_details div.contents").slideToggle('slow');
+	});
+
+	// Show installation team by name
+	var prePopulateData = <%= @users %>
+
+	$("#rectifier_installation_team").tokenInput("/users?from=team",{hintText: "Enter name here", theme: "facebook", 	
+		propertyToSearch: "name_emp_id", prePopulate: prePopulateData});
+</script>
+
+
+
+

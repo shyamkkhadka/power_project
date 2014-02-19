@@ -1,6 +1,6 @@
 <h1>Listing accounting offices</h1>
 
-<table>
+<table class="power"
   <tr>
     <th>Name</th>
     <th>Regional directorate</th>

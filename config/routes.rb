@@ -1,28 +1,47 @@
 PowerProject::Application.routes.draw do
 
   
+
+
  resources :accounting_offices
 
 
  resources :stations do
 	  resources :batteries 
 	  resources :rectifiers
-  end
+		resources :generators
+		
+		collection do
+			get 'list'			
+		end
+end
 
  resources :batteries do 
-	  resources :battery_daily_tests
-	  resources :battery_weekly_tests
+    get 'daily_report_list'
+    get 'weekly_report_list'
+        
+    resources :battery_daily_tests do 
+      post 'reports', :on => :collection
+    end
+	  resources :battery_weekly_tests do
+			get 'jqgrid', :on => :collection 
+			post 'reports', :on => :collection
+		end
+		resources :banks do
+			post 'update_cell'	
+		end
+		
  end
 
-
-
-	
 
   #devise_for :users, :controllers => { :sessions => "sessions", :registrations => "registrations" }
 	
 	# Newly added 	
 	devise_for :users, :controllers => { :registrations => "registrations" }
 	resources :users
+
+  # Custom route due to jqgrid non RESTful behaviour to allow editing the cell data
+  #post 'banks/update/' => 'banks#update'	
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -80,9 +99,6 @@ PowerProject::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-
-#172.17.21.143
-
 
 
 end

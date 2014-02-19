@@ -1,25 +1,40 @@
-<h1>Listing battery_weekly_tests</h1>
+<h1>Weekly test report of station : <%= @battery.station.name %>,system type <%= @battery.system_type.name %></h1>
 
-<table>
-  <tr>
-    <th>Cell voltage</th>
-    <th>Battery</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="leftdiv">
+	From date
+</div>
+<div class="rightdiv">
+	<input type="text" id = "from_date_batt_weekly_test"/>
+</div>
+<div class="leftdiv">
+	To date
+</div>
+<div class="rightdiv">
+	<input type="text" id = "to_date_batt_weekly_test"/>
+</div>
+<div class="leftdiv">
+	<input type="button" id = "batt_weekly_report" value="View Report"/>
+</div>
 
-<% @battery_weekly_tests.each do |battery_weekly_test| %>
-  <tr>
-    <td><%= battery_weekly_test.cell_voltage %></td>
-    <td><%= battery_weekly_test.battery_id %></td>
-    <td><%= link_to 'Show', battery_weekly_test %></td>
-    <td><%= link_to 'Edit', edit_battery_weekly_test_path(battery_weekly_test) %></td>
-    <td><%= link_to 'Destroy', battery_weekly_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<div id = "batt_weekly_test_container"> 
+	<!-- Load weekly test report here -->
+</div>
 
-<br />
+<script type="text/javascript">
+	$( "#from_date_batt_weekly_test" ).datepicker({dateFormat: 'dd-mm-yy'});
+	$( "#to_date_batt_weekly_test" ).datepicker({dateFormat: 'dd-mm-yy'});
 
-<%= link_to 'New Battery weekly test', new_battery_weekly_test_path %>
+	// 	Show battery weekly test report after clicking
+	$("#batt_weekly_report").click(function () {
+		var date1 = $("#from_date_batt_weekly_test").val();
+		var date2 = $("#to_date_batt_weekly_test").val();
+		if(date1 == "" || date2 == "") {
+			$("#batt_weekly_test_container div").remove();
+
+			$("#batt_weekly_test_container").append("<div style='color:red'>Please enter both from and two dates</div>");
+		}
+		else {
+			$("#batt_weekly_test_container").load("/batteries/"+<%= @battery.id %>+"/weekly_report_list?date1="+date1+"&date2="+date2);
+		}
+	});
+</script>

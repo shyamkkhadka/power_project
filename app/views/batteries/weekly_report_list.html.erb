@@ -1,0 +1,26 @@
+<h1>Test report between <%= @date1 %> to <%= @date2 %></h1>
+<% @battery_weekly_tests.each_slice(24).with_index do |slice, bank_index| %>
+	Bank No <%= bank_index + 1 %>
+	<table class="power">
+	<tr>
+		<th>Cell No</th>
+		<th>Cell voltage</th>
+		<th>Visual inspection</th>
+		<th>Reported by</th>
+		<th>Reported date</th>
+	</tr>
+	<% slice.each_with_index do |battery_weekly_test, i| %>
+		<tr>
+			<td><%= i + 1 %></td>
+			<td><%= battery_weekly_test.cell_voltage %></td>
+			<td><%= battery_weekly_test.visual_inspection %></td>
+			<td><%= battery_weekly_test.inserted_by %></td>
+			<td><%= battery_weekly_test.created_at %></td>
+		</tr>
+	<% end %>
+	</table>
+<% end %>
+
+<br/>
+
+<%= link_to 'Back', station_batteries_path(@station) %> | <%= link_to 'Export in excel', reports_battery_battery_weekly_tests_path(@battery,:date1 => @date1, :date2 => @date2), :method => :post, :date => @date.to_s%>

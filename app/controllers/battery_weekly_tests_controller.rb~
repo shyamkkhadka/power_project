@@ -1,10 +1,11 @@
 class BatteryWeeklyTestsController < ApplicationController
+	
   # GET /battery_weekly_tests
   # GET /battery_weekly_tests.json
   def index
     @battery_weekly_tests = BatteryWeeklyTest.all
-		test_battery = Battery.find(params[:battery_id])
-		@station = test_battery.station	
+		@test_battery = Battery.find(params[:battery_id])
+		@station = @test_battery.station	
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,8 +30,8 @@ class BatteryWeeklyTestsController < ApplicationController
   # GET /battery_weekly_tests/new.json
   def new
     @battery_weekly_test = BatteryWeeklyTest.new
-		test_battery = Battery.find(params[:battery_id])
-		@station = test_battery.station	
+		@battery = Battery.find(params[:battery_id])
+		@station = @battery.station
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,11 +48,19 @@ class BatteryWeeklyTestsController < ApplicationController
   # POST /battery_weekly_tests
   # POST /battery_weekly_tests.json
   def create
-    @battery_weekly_test = BatteryWeeklyTest.new(params[:battery_weekly_test])
-
+    #@battery_weekly_test = BatteryWeeklyTest.new(params[:battery_weekly_test])
+		@battery = Battery.find(params[:battery_id])
+		@battery.banks.each_with_index do |v, i|  
+			@battery_weekly_test = BatteryWeeklyTest.new(params[:battery_weekly_test])
+			@battery_weekly_test.battery_id = v.battery.id
+			@battery_weekly_test.bank_id = v.id
+			@battery_weekly_test.cell_voltage = v.cells
+			@battery_weekly_test.save
+			
+		end
     respond_to do |format|
       if @battery_weekly_test.save
-        format.html { redirect_to station_batteries_path(@@battery_weekly_test.battery.station), notice: 'Battery weekly test was successfully created.' }
+        format.html { redirect_to station_batteries_path(@battery.station), notice: 'Battery weekly test was successfully created.' }
         format.json { render json: @battery_weekly_test, status: :created, location: @battery_weekly_test }
       else
         format.html { render action: "new" }
@@ -68,7 +77,7 @@ class BatteryWeeklyTestsController < ApplicationController
 
     respond_to do |format|
       if @battery_weekly_test.update_attributes(params[:battery_weekly_test])
-        format.html { redirect_to battery_battery_daily_test_path(@battery, @battery_weekly_test), notice: 'Battery weekly test was successfully updated.' }
+        format.html { redirect_to battery_battery_weekly_test_path(@battery, @battery_weekly_test), notice: 'Battery weekly test was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -84,8 +93,14 @@ class BatteryWeeklyTestsController < ApplicationController
     @battery_weekly_test.destroy
 
     respond_to do |format|
-      format.html { redirect_to battery_weekly_tests_url }
+      format.html { redirect_to battery_battery_weekly_tests_url(@battery_weekly_test.battery) }
       format.json { head :no_content }
     end
   end
+
+	# Added for jqgrid testing
+	def jqgrid
+
+	end
+
 end

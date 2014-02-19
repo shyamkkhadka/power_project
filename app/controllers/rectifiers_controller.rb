@@ -40,8 +40,14 @@ class RectifiersController < ApplicationController
   def edit
     @rectifier = Rectifier.find(params[:id])
 		@station = Station.find(params[:station_id])
+
+	# Display users list for installation team
+		installation_team = @rectifier.installation_team.split(",")
+		@users = User.find(:all, :conditions => {:id => installation_team}, :select => 'name_emp_id, id').to_json.html_safe
+
   end
 
+	# TODO: ADD equipment_code to map between equipment table and rectifier
   # POST /rectifiers
   # POST /rectifiers.json
   def create

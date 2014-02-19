@@ -1,10 +1,11 @@
 class BatteryWeeklyTestsController < ApplicationController
+	
   # GET /battery_weekly_tests
   # GET /battery_weekly_tests.json
   def index
     @battery_weekly_tests = BatteryWeeklyTest.all
-		test_battery = Battery.find(params[:battery_id])
-		@station = test_battery.station	
+		@battery = Battery.find(params[:battery_id])
+		@station = @battery.station	
 
     respond_to do |format|
       format.html # index.html.erb
@@ -30,8 +31,11 @@ class BatteryWeeklyTestsController < ApplicationController
   def new
     @battery_weekly_test = BatteryWeeklyTest.new
 		@battery = Battery.find(params[:battery_id])
+    # @battery = Battery.last
 		@station = @battery.station
-
+		@banks = @battery.banks
+		@cells = @battery.banks.last.cells
+  
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @battery_weekly_test }
@@ -47,11 +51,15 @@ class BatteryWeeklyTestsController < ApplicationController
   # POST /battery_weekly_tests
   # POST /battery_weekly_tests.json
   def create
-    @battery_weekly_test = BatteryWeeklyTest.new(params[:battery_weekly_test])
-
+    battery = Battery.find(params[:battery_id])
+    params[:cells].each_value do |test|
+      test[:inserted_by] = current_user.full_name
+      battery.battery_weekly_tests.build(test) unless test.values.all?(&:blank?)
+    end
+        
     respond_to do |format|
-      if @battery_weekly_test.save
-        format.html { redirect_to station_batteries_path(@@battery_weekly_test.battery.station), notice: 'Battery weekly test was successfully created.' }
+      if battery.save
+        format.html { redirect_to station_batteries_path(battery.station), notice: 'Battery weekly test was successfully created.' }
         format.json { render json: @battery_weekly_test, status: :created, location: @battery_weekly_test }
       else
         format.html { render action: "new" }
@@ -68,7 +76,7 @@ class BatteryWeeklyTestsController < ApplicationController
 
     respond_to do |format|
       if @battery_weekly_test.update_attributes(params[:battery_weekly_test])
-        format.html { redirect_to battery_battery_daily_test_path(@battery, @battery_weekly_test), notice: 'Battery weekly test was successfully updated.' }
+        format.html { redirect_to battery_battery_weekly_test_path(@battery, @battery_weekly_test), notice: 'Battery weekly test was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -84,8 +92,48 @@ class BatteryWeeklyTestsController < ApplicationController
     @battery_weekly_test.destroy
 
     respond_to do |format|
-      format.html { redirect_to battery_weekly_tests_url }
+      format.html { redirect_to battery_battery_weekly_tests_url(@battery_weekly_test.battery) }
       format.json { head :no_content }
     end
   end
+
+	# Added for jqgrid testing
+	def jqgrid
+
+	end
+
+
+#    batteries/:battery_id/battery_weekly_tests/reports
+#    Generates spreadsheet format xls
+  def reports
+     battery = Battery.find(params[:battery_id])
+     @date1 = Date.parse(params[:date1])
+     @date2 = Date.parse(params[:date2])
+     @station = battery.station
+     package = Axlsx::Package.new
+     workbook = package.workbook
+     @tests = BatteryWeeklyTest.find(:all, :conditions => ["DATE(created_at) >= ? AND DATE(created_at) <= ?", @date1, @date2], :order => "created_at DESC")
+
+     workbook.add_worksheet(name: "Sheet 1") do |sheet|
+        # sheet.add_image(:image_src => Rails.root.join('public','images','ntlogo.png').to_s, :noSelect => true, :noMove => true) do |image|
+          # image.width=70
+          # image.height=71
+          # image.start_at 22, 14
+          # image.end_at 1, 1
+        # end
+         sheet.add_row ["Weekly Test Report on #{@date} of station #{@station.name}"]
+         @tests.each_slice(24).with_index do |slice, index|
+           sheet.add_row ["Bank No #{ index + 1}"]
+           sheet.add_row ["Cell No.", "Total Voltage", "Visual Inspection", "Reported by", "Reported date"], :style => Axlsx::STYLE_THIN_BORDER
+           slice.each_with_index do |t, i|
+            sheet.add_row [i+1, t.cell_voltage, t.visual_inspection,t.inserted_by, t.created_at.to_s], :style => Axlsx::STYLE_THIN_BORDER 
+           end
+           sheet.column_widths 10,nil, 23, 23, 23
+           sheet.merge_cells("A1:D1")
+         end
+      end
+      send_data package.to_stream.read, :filename => 'report.xlsx', :type => "application/vnd.openxmlformates-officedocument.spreadsheetml.sheet"
+   end 
+
+
 end

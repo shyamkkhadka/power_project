@@ -4,12 +4,10 @@ class AccountingOfficesController < ApplicationController
   def index
     
 		# Reqeust is for listing acc_offices under selected Regional Directorate(RD)
-		if params[:from] && params[:reg_directorate] 
-			@accounting_offices = RegionalDirectorate.find_by_code(params[:reg_directorate]).accounting_offices
-			
+		if params[:from] && params[:reg_directorate] != 'ALL'
+			@accounting_offices = RegionalDirectorate.find(params[:reg_directorate]).accounting_offices 
 		else
 			@accounting_offices =  AccountingOffice.all
-#AccountingOffice.all
 		end
 
 		

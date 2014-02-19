@@ -133,6 +133,9 @@ Devise.setup do |config|
   # to give user feedback and not to assert the e-mail validity.
   # config.email_regexp = /\A[^@]+@[^@]+\z/
 
+	# Validating email to use only ntc.net.np domain 
+	config.email_regexp = /^([\w\.%\+\-]+)@ntc.net.np$/i
+
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
@@ -250,5 +253,6 @@ Devise.setup do |config|
 	# Modified so that only ntc email can work
 	config.email_regexp = /^([\w\.%\+\-]+)@ntc.net.np$/i
 	
+	config.secret_key = '40a008a46bb145e199292cec1fc4ae4a217abe1cb7f7b49e5af726a34c00a8873c214881157c90c030cfa87bfd68d8128c37ae198eb00bbaee79b76d20edcecf'
 
 end

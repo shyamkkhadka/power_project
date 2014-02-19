@@ -7,8 +7,13 @@ class UsersController < ApplicationController
   # GET /users.xml                                                
   # GET /users.json                                       HTML and AJAX
   #-----------------------------------------------------------------------
-  def index
-    @users = User.accessible_by(current_ability, :index).limit(20)
+  def index 
+		
+	 	@users = User.accessible_by(current_ability, :index).limit(20).order(emp_id: :asc)
+		
+		# The request is from equipemnt new page, for installation team field
+		@users = User.find(:all, :select => 'name_emp_id, id', :conditions => ['full_name LIKE ?', '%' + params[:q] + '%']) if params[:from] == 'team'
+
     respond_to do |format|
       format.json { render :json => @users }
       format.xml  { render :xml => @users }
@@ -81,11 +86,8 @@ class UsersController < ApplicationController
   # POST /users.json                                      HTML AND AJAX
   #-----------------------------------------------------------------
   def create
-		puts "User called"
     @user = User.new(params[:user])
- 
     if @user.save
-		puts "User savedd"
       respond_to do |format|
         format.json { render :json => @user.to_json, :status => 200 }
         format.xml  { head :ok }
@@ -114,13 +116,16 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.errors[:base].empty? and @user.update_attributes(params[:user])
 				# Update user roles manually
+				# TODO: Modify user roles relation (many_to_many) to has_many and belongs_to role
+				@user.roles.clear
 				@user.roles.push(Role.find_by_name(@user.role))
 				@user.save
 		
         flash[:notice] = "Your account has been updated"
         format.json { render :json => @user.to_json, :status => 200 }
         format.xml  { head :ok }
-        format.html { render :action => :edit }
+				format.html { redirect_to @user }
+        #format.html { render :action => :edit }
       else
         format.json { render :text => "Could not update user", :status => :unprocessable_entity } #placeholder
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
@@ -130,6 +135,6 @@ class UsersController < ApplicationController
  
   rescue ActiveRecord::RecordNotFound
     respond_to_not_found(:js, :xml, :html)
-  end
+ 	 end
 
  end

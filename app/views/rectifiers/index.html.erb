@@ -1,40 +1,59 @@
-<h1>Listing rectifiers</h1>
+<h1>Listing rectifiers </h1>
+<% count = 1 
+@station.rectifiers.each do |rectifier| %>
+<h2> Rectifier #<%= count %> </h2>
+<div class="eqp_detail">
+	<div class="leftdiv">System Type </div>
+	<div class="rightdiv"><%= rectifier.system_type.name %></div>
+	<div class="leftdiv">Manufacturer name </div>
+	<div class="rightdiv"><%= rectifier.manufacturer_name %></div>
+	<div class="leftdiv">No.of modules</div>
+	<div class="rightdiv"><%= rectifier.module_no %></div>
+	<div class="leftdiv">Total Capacity </div>
+	<div class="rightdiv"><%= rectifier.total_capacity %></div>
+	<div class="leftdiv"> Installation Team </div>
+	<div class="rightdiv"><%= team_members(rectifier) %></div>
+	<div class="leftdiv"> Remarks </div>
+	<div class="rightdiv"><%= rectifier.remarks %></div>
+<div class="leftdiv"> Rectifier Cabinet Dimension </div>
+	<div class="rightdiv">Length: <%= rectifier.cab_length %> , Width: <%= rectifier.cab_width %>, Height: <%= 	
+	rectifier.cab_height %>, Weight: <%= rectifier.cab_weight %> </div>
+	<div class="leftdiv"> Module Dimension</div>
+	<div class="rightdiv">Length: <%= rectifier.module_length %>, Width: <%= rectifier.module_width %>, Height: <%= 	
+	rectifier.module_height %>, Weight: <%= rectifier.module_weight %> </div>
+</div>
+</div>
 
-<table>
-  <tr>
-    <th>System type</th>
-    <th>Manufacturer name</th>
-    <th>Serial no</th>
-    <th>Module no</th>
-    <th>Total capacity</th>
-    <th>First installation date</th>
-    <th>Installation date</th>
-    <th>Installation team</th>
-    <th>Remarks</th>
-    <th>Station</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="eqp_supplier_detail"> 
+	<fieldset>
+	<legend>Supplier and Local agent  details</legend>
+	<div class="leftdiv">Supplier Company Name</div>
+	<div class="rightdiv"><%= rectifier.supp_company_name %></div> 
+	<div class="leftdiv">Supplier Company Address</div>
+	<div class="rightdiv"><%= rectifier.supp_company_address %></div> 
+	<div class="leftdiv">Supplier Company Office</div>
+	<div class="rightdiv">Phone: <%= rectifier.supp_company_phone %>, Fax: <%= rectifier.supp_company_fax %> </div> 
+	<div class="leftdiv">Remarks</div>
+	<div class="rightdiv"><%= rectifier.supp_remarks %></div> 
+	<div class="leftdiv">Current Local Agent Name</div>
+	<div class="rightdiv"><%= rectifier.curr_local_agent_name %></div> 
+	<div class="leftdiv">Local Agent Contact Person</div>
+	<div class="rightdiv"><%= rectifier.local_agent_contact_person %> <%= rectifier.local_agent_mobile %></div> 
+	<div class="leftdiv">Local Agent Office </div>
+	<div class="rightdiv"> Phone : <%= rectifier.local_agent_office_phone %>, Fax <%= rectifier.local_agent_office_fax %></div>
+</fieldset>
+</div>
 
-<% @rectifiers.each do |rectifier| %>
-  <tr>
-    <td><%= rectifier.system_type.name %></td>
-    <td><%= rectifier.manufacturer_name %></td>
-    <td><%= rectifier.serial_no %></td>
-    <td><%= rectifier.module_no %></td>
-    <td><%= rectifier.total_capacity %></td>
-    <td><%= rectifier.first_installation_date %></td>
-    <td><%= rectifier.installation_date %></td>
-    <td><%= rectifier.installation_team %></td>
-    <td><%= rectifier.remarks %></td>
-    <td><%= rectifier.station_id %></td>
-    <td><%= link_to 'Edit', edit_station_rectifier_path(@station, rectifier) %></td>
-    <td><%= link_to 'Destroy',  station_battery_path(@station, rectifier), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<div style="clear:both"></div>
+
+<div>
+	<%= link_to_if(can?(:edit, rectifier), "Edit", edit_station_rectifier_path(@station, rectifier)) {} %> |
+	<%= link_to_if(can?(:delete, rectifier), "Delete", station_rectifier_path(@station, rectifier), method: :delete, 	
+	data: { confirm: 'Are you sure?' }) {} %>
+</div>	
+<% count  += 1 end %>
 
 <br />
 
-<%= link_to 'New Rectifier', new_station_rectifier_path(@station) %>
+<%= link_to_if(can?(:new, Rectifier), 'New rectifier', new_station_rectifier_path(@station)) {} %>
+
