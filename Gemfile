@@ -31,14 +31,14 @@ gem 'acts_as_relation', '~> 0.1'
 gem 'axlsx'
 
 # for deployment on Heroku
-#gem "heroku"
-#group :development, :test do
- # gem 'sqlite3'
-#end
-#group :production do
-#  gem 'pg'
-#  gem 'thin'
-#end
+gem "heroku"
+group :development, :test do
+ gem 'sqlite3'
+end
+group :production do
+ gem 'pg'
+ gem 'thin'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
