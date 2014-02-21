@@ -50,7 +50,7 @@
 			<%= link_to 'Enter Daily report', new_battery_battery_daily_test_path(battery), :class => "link_button" %>
 		<% end %>
 		<% if battery.weekly_test_report_entered? %>
-			 <%= link_to "Weekly Report Entered", battery_battery_weekly_test_path(battery, battery.battery_weekly_tests.last), :class => "link_button" %> </td>
+			 <%= link_to "Weekly Report Entered", battery_battery_weekly_tests_path(battery), :class => "link_button" %> </td>
 		<% else %>
 				<%= link_to 'Enter Weekly report', new_battery_battery_weekly_test_path(battery), :class => "link_button" %>
 		<% end %>		

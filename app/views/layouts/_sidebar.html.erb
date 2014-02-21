@@ -1,7 +1,7 @@
 <div id="side_bar">
-	<h3 class="subhead">Stations Overview</h3>
+	<h3 class="subhead">Overview Modules</h3>
 	<ul>
-		<li><%= link_to "Stations List", stations_path %></li>
+		<li><%= link_to "List Stations", stations_path %></li>
 		<% if current_user.role? :admin %> 
 			<li><%= link_to "List accounting offices", accounting_offices_path %></li>
 			<li><%= link_to "List users", users_path %></li>
@@ -18,12 +18,12 @@
 		</ul>
 	<% end %>
 
-	<h3 class="subhead">Reporting Modules</h3>
+	<!-- <h3 class="subhead">Reporting Modules</h3>
 	<ul>
 		<li><a href="">Daily Report</a></li>
 		<li><a href="">Weekly Report</a></li>
 		<li><a href="">Search Station</a></li>
 		<li><a href="">Error Report</a></li>
-	</ul>
+	</ul> -->
 		
 </div>

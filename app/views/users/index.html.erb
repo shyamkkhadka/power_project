@@ -4,8 +4,8 @@
   <tr>
 		<th>Employee ID</th>
 		<th>Full Name</th>
-    <th>Working Office</th>
-    <!--<th>User Role</th>-->
+    	<th>Working Office</th>
+    	<th>User Type</th>
   </tr>
 
 <% @users.each do |u| %>
@@ -14,6 +14,7 @@
 	  <td><%= u.full_name %></td>
     <!--<td><%= link_to_if(can?(:read, User), "#{u.email}", user_path(u.id)) {} %></td>-->
 	  <td><%= u.working_office %></td>
+	  <td><%= u.role %></td>
     <!--<td><%#= u.roles.first.name %><%#= "#{u.roles.collect{|r| r.name}}" %></td>-->
   </tr>
 <% end %>

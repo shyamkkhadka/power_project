@@ -31,4 +31,12 @@ class User < ActiveRecord::Base
     @current_user = current_user
   end
 
+  HUMANIZED_ATTRIBUTES = {
+      :emp_id => "Employee ID",
+   }
+
+   def self.human_attribute_name(attr, options={})
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+   end
+
 end

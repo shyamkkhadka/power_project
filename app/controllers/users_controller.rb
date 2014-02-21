@@ -26,6 +26,8 @@ class UsersController < ApplicationController
   # GET /users/new.json                                    HTML AND AJAX
   #-------------------------------------------------------------------
   def new
+    @user = User.new
+    @stations = @user.stations
     respond_to do |format|
       format.json { render :json => @user }   
       format.xml  { render :xml => @user }
@@ -53,6 +55,9 @@ class UsersController < ApplicationController
   # GET /users/1/edit.json                                HTML AND AJAX
   #-------------------------------------------------------------------
   def edit
+    @user = User.find(params[:id])
+    # Get all stations under an accounting office, to which the user belongs
+    @stations = @user.stations.first.accounting_office.stations
     respond_to do |format|
       format.json { render :json => @user }   
       format.xml  { render :xml => @user }
@@ -113,6 +118,7 @@ class UsersController < ApplicationController
       @user.errors[:base] << "The password you entered is incorrect" unless @user.valid_password?(params[:user][:current_password])
     end
  
+ puts " Params user is #{params[:user].inspect}"
     respond_to do |format|
       if @user.errors[:base].empty? and @user.update_attributes(params[:user])
 				# Update user roles manually

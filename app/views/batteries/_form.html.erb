@@ -16,11 +16,11 @@
 	  <%= f.select :system_type_id , system_types, :selected => (@battery.new_record? ? system_types.first : @battery.system_type.name ) %>
   </div>
   <div class="field">
-    <%= f.label "Manufacturer's name" %><br />
+    <%= f.label "Manufacturer's name" %> * <br />
     <%= f.text_field :company_name, :size => 30 %>
   </div>
   <div class="field">
-    <%= f.label "No of banks" %><br />
+    <%= f.label "No of banks" %> * <br />
     <%= f.number_field :bank_no, :size => 30 %>
   </div>
   <div class="field">
@@ -39,6 +39,52 @@
     <%= f.label :installation_team %><br />
     <%= f.text_field :installation_team, :size => 30 %>
   </div>
+
+	<div id="batt_supplier_details" class="separator">
+		<b>Supplier and local agent details </b><span class="toggle">[ - ]</span>
+		<div class="contents" style="display:non/e">
+			<div class="field">
+  		  <%= f.label "Supplier Company Name" %> * <br />
+  		  <%= f.text_field :supp_company_name, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Company Address" %><br />
+   		 	<%= f.text_field :supp_company_address, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Company Phone" %><br />
+   		 	<%= f.text_field :supp_company_phone, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Company Fax" %><br />
+   		 	<%= f.text_field :supp_company_fax, :size => 30 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Supplier Remarks" %><br />
+   		 	<%= f.text_area :supp_remarks, :rows => 8, :cols => 43 %>
+  		</div>
+  		<div class="field">
+   		 	<%= f.label "Current Local Agent Name" %><br />
+   		 	<%= f.text_field :curr_local_agent_name, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Contact Person" %><br />
+   		 	<%= f.text_field :local_agent_contact_person, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Contact Person mobile no" %><br />
+   		 	<%= f.text_field :local_agent_mobile, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Office Phone no" %><br />
+   		 	<%= f.text_field :local_agent_office_phone, :size => 30 %>
+  		</div>
+			<div class="field">
+   		 	<%= f.label "Local Agent Office Fax no" %><br />
+   		 	<%= f.text_field :local_agent_office_fax, :size => 30 %>
+  		</div>
+		</div>	 
+	</div>
 
 	<div id="batt_rack_dimensions" class="separator">
 		<b>Battery Rack Dimensions</b><span class="toggle">[ + ]</span>
@@ -84,54 +130,7 @@
  		 	</div>
 		</div>
 	</div>
-  
-	
-	<div id="batt_supplier_details" class="separator">
-		<b>Supplier and local agent details </b><span class="toggle">[ + ]</span>
-		<div class="contents" style="display:none">
-			<div class="field">
-  		  <%= f.label "Supplier Company Name" %><br />
-  		  <%= f.text_field :supp_company_name, :size => 30 %>
-  		</div>
-  		<div class="field">
-   		 	<%= f.label "Supplier Company Address" %><br />
-   		 	<%= f.text_field :supp_company_address, :size => 30 %>
-  		</div>
-  		<div class="field">
-   		 	<%= f.label "Supplier Company Phone" %><br />
-   		 	<%= f.text_field :supp_company_phone, :size => 30 %>
-  		</div>
-  		<div class="field">
-   		 	<%= f.label "Supplier Company Fax" %><br />
-   		 	<%= f.text_field :supp_company_fax, :size => 30 %>
-  		</div>
-  		<div class="field">
-   		 	<%= f.label "Supplier Remarks" %><br />
-   		 	<%= f.text_area :supp_remarks, :rows => 8, :cols => 43 %>
-  		</div>
-  		<div class="field">
-   		 	<%= f.label "Current Local Agent Name" %><br />
-   		 	<%= f.text_field :curr_local_agent_name, :size => 30 %>
-  		</div>
-			<div class="field">
-   		 	<%= f.label "Local Agent Contact Person" %><br />
-   		 	<%= f.text_field :local_agent_contact_person, :size => 30 %>
-  		</div>
-			<div class="field">
-   		 	<%= f.label "Local Agent Contact Person mobile no" %><br />
-   		 	<%= f.text_field :local_agent_mobile, :size => 30 %>
-  		</div>
-			<div class="field">
-   		 	<%= f.label "Local Agent Office Phone no" %><br />
-   		 	<%= f.text_field :local_agent_office_phone, :size => 30 %>
-  		</div>
-			<div class="field">
-   		 	<%= f.label "Local Agent Office Fax no" %><br />
-   		 	<%= f.text_field :local_agent_office_fax, :size => 30 %>
-  		</div>
-		</div>	 
-	</div>
-
+  	
   <div class="field">
     <%= f.label :remarks %><br />
     <%= f.text_area :remarks, :rows => 8, :cols => 43 %>

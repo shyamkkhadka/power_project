@@ -35,10 +35,16 @@ gem "heroku"
 group :development, :test do
  gem 'sqlite3'
 end
-group :production do
- gem 'pg'
- gem 'thin'
-end
+
+gem 'pg'
+
+# Added for heroku deploy
+gem 'rails_12factor', group: :production
+
+# group :production do
+ # gem 'pg'
+ # gem 'thin'
+# end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

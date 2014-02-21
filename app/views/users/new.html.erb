@@ -2,7 +2,7 @@
 <%= form_for(@user) do |f| %>
 	<% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this battery from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
  	    <ul>
  		    <% @user.errors.full_messages.each do |msg| %>
  	      	<li><%= msg %></li>
@@ -11,14 +11,44 @@
    	</div>
 	<% end %>
 
- 	<p><%= f.label :email %></p>
+ 	<p><%= f.label :email %>*</p>
 	<p><%= f.text_field :email %></p>
-  <p><%= f.label :password %></p>
+  <p><%= f.label :password %>*</p>
   <p><%= f.password_field :password %></p>
  
   <p><%= f.label :password_confirmation %></p>
   <p><%= f.password_field :password_confirmation %></p>
-	<%= render :partial => '/users/user_fields', :locals => { :f => f } %>
-	<p><%= f.submit "Register" %></p> 
+  		<%= render :partial => '/users/user_fields', :locals => { :f => f } %>
+
+  <p>  
+    <% if can? :read, Role %>
+	<p><%= f.label :role %></p>
+	<%= f.select :role , Role.pluck(:name) %>	
+  <% end %>
+  </p>
+  <div id = "regional_directorates" style="display:none">
+	Regional Directorates
+	<%#= select_tag "rds",options_for_select(regional_directorates) %>
+	<p>
+		<select id = "rds">
+		 <% RegionalDirectorate.all.each do |rd| %>
+			<option value = "<%= rd.id %>"><%= rd.code %> </option>
+		<% end %>
+		</select>
+	</p>
+	</div>
+
+
+	<div id = "account_offices" style="display:none">
+		Accounting offices
+		<p>
+			<select class = "offices">
+			</select>	
+		</p>
+	</div>
+	<div id="station_lists" style="display:none"> 
+		Stations
+	</div>
+	<p><%= f.submit "Create" %></p> 
 <% end %>
 	

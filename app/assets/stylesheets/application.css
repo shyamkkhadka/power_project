@@ -132,6 +132,10 @@ div#stations_overview div.box{
 	line-height:18px;
 }
 
+div#stations_overview h1:hover {
+	cursor: hand;
+	cursor: pointer;
+}
 
 
 
@@ -329,11 +333,6 @@ div.big-heading {
 
 /******************* Equipment tab interface index page css ***********/
 
-/*div.equipment-detail {
-	border-bottom: 1px solid #CCCCCC;
-	margin-bottom: 5px;
-}*/
-
 div.eqp_detail {
 	width:50%;
 	border:1px solid;
@@ -379,3 +378,7 @@ div#batt_daily_test_container, div#batt_weekly_test_container {
 	margin-top:80px;
 }
     
+/**************** Users page **************************/
+select#user_role, select#rds, select#account_office, div#account_offices select.offices, select#accounting_office_regional_directorate_id, select#station_regional_directorate_id, select#station_accounting_office_id, select#battery_system_type_id {
+	width: 327px;
+}

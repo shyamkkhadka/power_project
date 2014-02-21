@@ -1,6 +1,6 @@
 class StationsController < ApplicationController
   before_filter :authenticate_user!
-	load_and_authorize_resource :only => [:new, :create, :edit]
+	load_and_authorize_resource :only => [:new, :create, :edit, :show, :index]
 
   # GET /stations
   # GET /stations.json
@@ -8,12 +8,12 @@ class StationsController < ApplicationController
 		
 		# Reqeust is for listing stations under selected Accounting Office
 		if params[:from] && params[:acc_office] 
-			@stations = AccountingOffice.find(params[:acc_office]).stations
+			@stations = AccountingOffice.find(params[:acc_office]).stations.find(:all, :order => :name)
 		else
 	    if current_user.role? :admin
-				@stations = Station.all 
+				@stations = Station.order(:name).all 
 			else
-				@stations = current_user.stations
+				@stations = current_user.stations.find(:all, :order => :name)
 			end
 
 		end

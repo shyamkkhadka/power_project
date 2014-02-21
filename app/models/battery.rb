@@ -21,13 +21,25 @@ class Battery < ActiveRecord::Base
 	# Check if daily test report is already entered or not
 	def daily_test_report_entered?
 		# true if self.battery_daily_tests.pluck("created_at").collect! { |x| x.to_date }.include?(Date.current)
-		true if self.battery_daily_tests.last.created_at.to_date == Date.today
-	end
+		if self.battery_daily_tests.empty? 
+		  false
+		elsif self.battery_daily_tests.last.created_at.to_date == Date.today
+		  true
+		else
+		  false
+		end
+  end
 
 		# Check if weekly test report is already entered or not
 	def weekly_test_report_entered?
-		true if (Date.current - 6.days..Date.current).cover?(self.battery_weekly_tests.last.created_at.to_date)
-	end
+	  if self.battery_weekly_tests.empty? 
+      false
+    elsif (Date.current - 6.days..Date.current).cover?(self.battery_weekly_tests.last.created_at.to_date)
+      true
+    else
+      false
+    end
+   end
 
 	HUMANIZED_ATTRIBUTES = {
     :bank_no => "No. of banks",

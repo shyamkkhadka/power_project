@@ -14,6 +14,16 @@
 	<%#= error_messages(@user,"Could not update user") %>
 	<%= render :partial => 'user_fields', :locals => { :f => f } %>
  
+	<% if @user.role == "station_user" %>
+		<div id="station_lists">
+			Stations assigned
+			<% @stations.each do |station| %>
+				<%= check_box_tag 'user[station_ids][]', station.id, @user.stations.include?(station) %>
+				<%= station.name %>
+			<% end %>
+		</div>
+	<% end %> 
+	
 	<p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></p>
 	<p><%= f.password_field :password %></p>
  

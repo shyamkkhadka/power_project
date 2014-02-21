@@ -12,5 +12,14 @@ class Station < ActiveRecord::Base
   has_many :rectifiers,  :dependent => :destroy 
   has_many :generators,  :dependent => :destroy 
 	has_and_belongs_to_many :users	
+  
+  HUMANIZED_ATTRIBUTES = {
+      :inc_name => "Incharge Name",
+   }
+
+   def self.human_attribute_name(attr, options={})
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+   end
+
 
 end

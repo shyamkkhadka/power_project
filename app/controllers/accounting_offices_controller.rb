@@ -32,7 +32,7 @@ class AccountingOfficesController < ApplicationController
   # GET /accounting_offices/new.json
   def new
     @accounting_office = AccountingOffice.new
-
+    @regional_directorates = RegionalDirectorate.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @accounting_office }
@@ -42,6 +42,8 @@ class AccountingOfficesController < ApplicationController
   # GET /accounting_offices/1/edit
   def edit
     @accounting_office = AccountingOffice.find(params[:id])
+    @regional_directorates = RegionalDirectorate.all
+
   end
 
   # POST /accounting_offices
@@ -49,7 +51,7 @@ class AccountingOfficesController < ApplicationController
   def create
     @accounting_office = AccountingOffice.new(params[:accounting_office])
 
-    @accounting_office.regional_directorate_id = RegionalDirectorate.find_by_code(params[:accounting_office][:regional_directorate_id]).id
+    #@accounting_office.regional_directorate_id = RegionalDirectorate.find_by_code(params[:accounting_office][:regional_directorate_id]).id
 
     respond_to do |format|
       if @accounting_office.save

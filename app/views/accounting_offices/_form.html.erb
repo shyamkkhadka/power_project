@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :regional_directorate_id %><br />
-		<%= f.select :regional_directorate_id , regional_directorates %>
+	<%= f.collection_select :regional_directorate_id , @regional_directorates, :id, :name %>
   </div>
   <div class="actions">
     <%= f.submit %>

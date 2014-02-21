@@ -19,7 +19,7 @@ class BatteriesController < ApplicationController
   # GET /batteries/1.json
   def show
     @battery = Battery.find(params[:id])
-
+    @station = @battery.station
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @battery }

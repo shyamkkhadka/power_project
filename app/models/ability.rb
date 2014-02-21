@@ -35,8 +35,21 @@ class Ability
 			can :manage, :all
       can :see_timestamps, User
 		elsif user.role? :station_user
-		  can :read, Battery 
-			puts " I am station user"    
+      can :read, [Station], :users => { :id => user.id }
+      can :manage, [Battery], :station => { :users => {:id => user.id} }
+      
+    # # Manage all batterys associated to this station
+    # stations = user.stations
+    # managed_batteries = []
+  # stations.each do |st|
+    # st.batteries.each do |bt|
+      # managed_batteries << bt.id
+    # end
+    # managed_batteries << st.id
+  # end
+  # can :read, Battery, :id => managed_batteries
+#       
+			puts " I am station2 user, with user #{user.full_name}"     
 		elsif user.role? :normal
 			puts " I am normal user"    
       can :see_timestamps, User, :id => user.id
