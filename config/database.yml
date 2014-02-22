@@ -8,16 +8,6 @@
   # database: db/development.sqlite3
   # pool: 5
   # timeout: 5000
-
-# development:
-  # adapter: postgresql
-  # encoding: unicode
-  # database: pmss
-  # pool: 5
-  # host: localhost
-  # username: pmss
-  # password: pmss@ntc
-  
   
 development:
   adapter: mysql2
@@ -37,10 +27,19 @@ development:
   # pool: 5
   # timeout: 5000
 
-production:
-  adapter: postgresql
-  encoding: unicode
+development:
+  adapter: mysql2
   database: pmss_production
   pool: 5
+  host: localhost
+  encoding: utf8
   username: pmss
   password: pmss@ntc
+
+# production:
+  # adapter: postgresql
+  # encoding: unicode
+  # database: pmss_production
+  # pool: 5
+  # username: pmss
+  # password: pmss@ntc

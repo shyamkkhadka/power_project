@@ -36,7 +36,7 @@ group :development, :test do
  gem 'sqlite3'
 end
 
-gem 'pg'
+# gem 'pg'
 
 # Added for heroku deploy
 gem 'rails_12factor', group: :production
