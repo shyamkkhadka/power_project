@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140217022358) do
+ActiveRecord::Schema.define(:version => 20140222081243) do
 
   create_table "accounting_offices", :force => true do |t|
     t.string   "name"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20140217022358) do
 
   create_table "battery_daily_tests", :force => true do |t|
     t.integer  "battery_id"
-    t.string   "total_voltage"
+    t.float    "total_voltage"
     t.text     "visual_inspection"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20140217022358) do
   end
 
   create_table "battery_weekly_tests", :force => true do |t|
-    t.text     "cell_voltage"
+    t.float    "cell_voltage"
     t.integer  "battery_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -204,24 +204,24 @@ ActiveRecord::Schema.define(:version => 20140217022358) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                                :default => "", :null => false
+    t.string   "encrypted_password",                   :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                        :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.string   "role"
     t.string   "full_name"
     t.integer  "emp_id"
     t.string   "designation"
     t.string   "working_office"
-    t.integer  "cell_no"
+    t.string   "cell_no",                :limit => 17
     t.string   "name_emp_id"
   end
 

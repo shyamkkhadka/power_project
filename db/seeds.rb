@@ -21,7 +21,7 @@ RegionalDirectorate.create([
 # Role.create([ { name: "admin" }, { name: "station_user" }, { name: "regional_user" }, { name: "accounting_user" }, { name: "manager" } ])
 
 # For first deployment, only two roles are taken in account
-Role.create([ { name: "admin" }, { name: "station_user" }, { name: "regional_user" }, { name: "accounting_user" }, { name: "manager" } ])
+Role.create([ { name: "admin" }, { name: "station_user" } ])
 
 # Create an admin user
 User.create(email: "shyam.khadka@ntc.net.np", full_name: "shyam krishna khadka", emp_id: 7297, cell_no: 9851166969, role: "admin", password: '12345', :name_emp_id => 'shyam krishna khadka-7297')
