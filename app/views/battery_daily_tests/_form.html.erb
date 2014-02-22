@@ -1,10 +1,10 @@
 <%= form_for([@battery, @battery_daily_test]) do |f| %>
-  <% @banks.each do |bank| %>
-	<b> Bank ID : <%= bank.id %> </b> 
+  <% @banks.each_with_index do |bank, i| %>
+	<b> Bank No : <%= i + 1 %> </b> 
      <%= fields_for "banks[#{bank.id}]" do |g| %>
      	<div class="field">
-    		<%= g.label :total_voltage %><br />
-    		<%= g.text_field :total_voltage %>
+    		<%= g.label :total_voltage %> <br />
+    		<%= g.text_field :total_voltage %> V 
   		</div>
   		<div class="field">
     		<%= g.label :visual_inspection %><br />

@@ -1,22 +1,22 @@
 class AddSupplierDetailsToBankRectfier < ActiveRecord::Migration
   def change
-		add_column :batteries, :batt_rack_length, :number
-		add_column :batteries, :batt_rack_width, :number
-		add_column :batteries, :batt_rack_height, :number 	
-		add_column :batteries, :batt_rack_weight, :number
-		add_column :batteries, :cell_length, :number
-		add_column :batteries, :cell_width, :number
-		add_column :batteries, :cell_height, :number
-		add_column :batteries, :cell_weight, :number
+		add_column :batteries, :batt_rack_length, :float
+		add_column :batteries, :batt_rack_width, :float
+		add_column :batteries, :batt_rack_height, :float 	
+		add_column :batteries, :batt_rack_weight, :float
+		add_column :batteries, :cell_length, :float
+		add_column :batteries, :cell_width, :float
+		add_column :batteries, :cell_height, :float
+		add_column :batteries, :cell_weight, :float
 
-		add_column :rectifiers, :cab_length, :number
-		add_column :rectifiers, :cab_width, :number
-		add_column :rectifiers, :cab_height, :number
-		add_column :rectifiers, :cab_weight, :number
-		add_column :rectifiers, :module_length, :number
-		add_column :rectifiers, :module_width, :number		
-		add_column :rectifiers, :module_height, :number
-		add_column :rectifiers, :module_weight, :number
+		add_column :rectifiers, :cab_length, :float
+		add_column :rectifiers, :cab_width, :float
+		add_column :rectifiers, :cab_height, :float
+		add_column :rectifiers, :cab_weight, :float
+		add_column :rectifiers, :module_length, :float
+		add_column :rectifiers, :module_width, :float		
+		add_column :rectifiers, :module_height, :float
+		add_column :rectifiers, :module_weight, :float
 
 
   end

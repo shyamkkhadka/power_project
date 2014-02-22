@@ -25,7 +25,7 @@
   </div>
 	<div class="field">
     <%= f.label :regional_directorate %><br />
-   	<%= f.select :regional_directorate_id, options_from_collection_for_select(RegionalDirectorate.all,"id","code", @station.new_record? ? regional_directorates.first : @station.regional_directorate.id) %>  
+   	<%= f.select :regional_directorate_id, options_from_collection_for_select(RegionalDirectorate.all,"id","name", @station.new_record? ? regional_directorates.first : @station.regional_directorate.id) %>  
 	</div>
 
 	<div class="field">

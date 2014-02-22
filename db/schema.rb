@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20140217022358) do
   create_table "banks", :force => true do |t|
     t.string   "total_voltage"
     t.text     "visual_inspection"
-    t.text     "cells"
     t.integer  "battery_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -42,14 +41,14 @@ ActiveRecord::Schema.define(:version => 20140217022358) do
     t.integer  "station_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
-    t.decimal  "batt_rack_length"
-    t.decimal  "batt_rack_width"
-    t.decimal  "batt_rack_height"
-    t.decimal  "batt_rack_weight"
-    t.decimal  "cell_length"
-    t.decimal  "cell_width"
-    t.decimal  "cell_height"
-    t.decimal  "cell_weight"
+    t.float    "batt_rack_length"
+    t.float    "batt_rack_width"
+    t.float    "batt_rack_height"
+    t.float    "batt_rack_weight"
+    t.float    "cell_length"
+    t.float    "cell_width"
+    t.float    "cell_height"
+    t.float    "cell_weight"
   end
 
   create_table "battery_daily_tests", :force => true do |t|
@@ -63,10 +62,10 @@ ActiveRecord::Schema.define(:version => 20140217022358) do
   end
 
   create_table "battery_weekly_tests", :force => true do |t|
-    t.text     "cell_voltage",      :limit => 255
+    t.text     "cell_voltage"
     t.integer  "battery_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "bank_id"
     t.string   "inserted_by"
     t.integer  "cell_id"
@@ -146,14 +145,14 @@ ActiveRecord::Schema.define(:version => 20140217022358) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.date     "installation_date"
-    t.decimal  "cab_length"
-    t.decimal  "cab_width"
-    t.decimal  "cab_height"
-    t.decimal  "cab_weight"
-    t.decimal  "module_length"
-    t.decimal  "module_width"
-    t.decimal  "module_height"
-    t.decimal  "module_weight"
+    t.float    "cab_length"
+    t.float    "cab_width"
+    t.float    "cab_height"
+    t.float    "cab_weight"
+    t.float    "module_length"
+    t.float    "module_width"
+    t.float    "module_height"
+    t.float    "module_weight"
   end
 
   create_table "regional_directorates", :force => true do |t|
@@ -174,11 +173,6 @@ ActiveRecord::Schema.define(:version => 20140217022358) do
 
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer "role_id"
-    t.integer "user_id"
-  end
-
-  create_table "station_users", :id => false, :force => true do |t|
-    t.integer "station_id"
     t.integer "user_id"
   end
 

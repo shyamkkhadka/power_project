@@ -70,7 +70,7 @@ class StationsController < ApplicationController
 				admin_user.stations << @station
 				admin_user.save
 				
-				format.html { redirect_to @station, notice: 'Station was successfully created.' }
+				format.html { redirect_to stations_path, notice: 'Station was successfully created.' }
         format.json { render json: @station, status: :created, location: @station }
       else
         format.html { render action: "new" }

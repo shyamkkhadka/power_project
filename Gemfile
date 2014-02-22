@@ -41,6 +41,8 @@ gem 'pg'
 # Added for heroku deploy
 gem 'rails_12factor', group: :production
 
+gem 'mysql2'
+
 # group :production do
  # gem 'pg'
  # gem 'thin'

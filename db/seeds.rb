@@ -16,3 +16,13 @@ RegionalDirectorate.create([
                            { code: 'MWRD', name: 'Mid Western Regional Directorate', city: 'Nepalgunj', zone: 'Bheri', district: 'Nepalgunj'},
                            { code: 'FWRD', name: 'Far Western Regional Directorate', city: 'Attariya', zone: 'Seti', district: 'Dhangadi'}
                            ])
+
+# Predefine some roles
+# Role.create([ { name: "admin" }, { name: "station_user" }, { name: "regional_user" }, { name: "accounting_user" }, { name: "manager" } ])
+
+# For first deployment, only two roles are taken in account
+Role.create([ { name: "admin" }, { name: "station_user" }, { name: "regional_user" }, { name: "accounting_user" }, { name: "manager" } ])
+
+# Create an admin user
+User.create(email: "shyam.khadka@ntc.net.np", full_name: "shyam krishna khadka", emp_id: 7297, cell_no: 9851166969, role: "admin", password: '12345', :name_emp_id => 'shyam krishna khadka-7297')
+User.first.roles.push(Role.first)

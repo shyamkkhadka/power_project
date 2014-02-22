@@ -103,7 +103,7 @@ class BatteriesController < ApplicationController
   # Create empty bank records for battery according to given number of banks attributes and cells
   def create_banks(battery)
     battery.bank_no.times do
-      bank = Bank.create(:battery_id => battery.id)
+      bank = Bank.create(:battery_id => battery.id, :total_voltage => 24.0)
       24.times do 
         cell = Cell.create(:cell_voltage => 2.0)
         bank.cells.push(cell)

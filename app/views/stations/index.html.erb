@@ -6,7 +6,7 @@
 <select id = "rd_code">
 	<option value = "ALL"> ALL </option>
 	<% RegionalDirectorate.all.each do |rd| %>
-		<option value = "<%= rd.id %>"><%= rd.code %> </option>
+		<option value = "<%= rd.id %>"><%= rd.name %> </option>
 	<% end %>
 </select>
 </span>
