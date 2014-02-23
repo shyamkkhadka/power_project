@@ -1,7 +1,0 @@
-class Bank < ActiveRecord::Base
-  attr_accessible :battery_id, :cells, :total_voltage, :visual_inpsection
-	serialize :cells
-
-	belongs_to :battery
-end
-
