@@ -12,8 +12,8 @@
 	<% if current_user.role? :admin %>
 		<h3 class="subhead">Admin Modules</h3>
 		<ul>
-			<li> <%= link_to "Add Station", new_station_path %>  </li>
 			<li> <%= link_to "Add Accounting office", new_accounting_office_path %> </li>
+			<li> <%= link_to "Add Station", new_station_path %>  </li>
 			<li> <%= link_to  "Add User", new_user_path %> </li>
 		</ul>
 	<% end %>

@@ -27,7 +27,7 @@ development:
   # pool: 5
   # timeout: 5000
 
-development:
+production:
   adapter: mysql2
   database: pmss_production
   pool: 5

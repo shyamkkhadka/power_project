@@ -57,7 +57,12 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     # Get all stations under an accounting office, to which the user belongs
-    @stations = @user.stations.first.accounting_office.stations
+    if  current_user.role? :admin
+      @stations = Station.all
+    else
+      @stations = @user.stations.first.accounting_office.stations
+    end
+    
     respond_to do |format|
       format.json { render :json => @user }   
       format.xml  { render :xml => @user }
@@ -92,6 +97,7 @@ class UsersController < ApplicationController
   #-----------------------------------------------------------------
   def create
     @user = User.new(params[:user])
+    
     if @user.save
       respond_to do |format|
         format.json { render :json => @user.to_json, :status => 200 }

@@ -37,6 +37,8 @@ class RegistrationsController < Devise::RegistrationsController
  		@user.name_emp_id = @user.full_name + '-' + @user.emp_id.to_s
     if @user.save 
 			@user.roles.push(Role.find_by_name(@user.role))
+			# Assign all the stations created till now if the user is admin
+      @user.stations.push(Station.all) if @user.role?:admin
 			@user.save
 
       respond_to do |format|

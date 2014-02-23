@@ -16,7 +16,6 @@
  *= require jquery.ui.all
  */
 
-= require_self
 
 /* CSS Document */
 
@@ -137,8 +136,13 @@ div#stations_overview h1:hover {
 	cursor: pointer;
 }
 
+div#stations {
+	margin-top: 10px;
+}
 
-
+div#stations ul li {
+	padding: 5px;
+}
 
 /*********************       COMMON CSS     *************************/
 
@@ -157,7 +161,7 @@ border:1px solid #CCC;
 
 table.power{border:2px solid #fff; padding:5px; background-color:#FFF; width:100%;}
 table.power td{border:1px solid #cfe5fc; margin:0; padding:3px 5px 3px;}
-table.power th{background-color:#336699; color:#FFF; border:1px solid #eee; pa/dding:3px 5px 3px;}
+table.power th{background-color:#336699; color:#FFF; border:1px solid #eee; }
 span.toggle { cursor: pointer } 
 
 /*
@@ -379,6 +383,6 @@ div#batt_daily_test_container, div#batt_weekly_test_container {
 }
     
 /**************** Users page **************************/
-select#user_role, select#rds, select#account_office, div#account_offices select.offices, select#accounting_office_regional_directorate_id, select#station_regional_directorate_id, select#station_accounting_office_id, select#battery_system_type_id {
-	width: 327px;
+select#user_role, select#rds, select#account_office, div#account_offices select.offices, select#accounting_office_regional_directorate_id, select#station_regional_directorate_id, select#station_accounting_office_id, select#battery_system_type_id, select#rd_code, select#acc_office{
+	width: 210px;
 }

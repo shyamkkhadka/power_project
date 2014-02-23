@@ -9,16 +9,13 @@ class StationsController < ApplicationController
 		# Reqeust is for listing stations under selected Accounting Office
 		if params[:from] && params[:acc_office] 
 			@stations = AccountingOffice.find(params[:acc_office]).stations.find(:all, :order => :name)
-		else
-	    if current_user.role? :admin
+		elsif current_user.role? :admin
 				@stations = Station.order(:name).all 
 			else
 				@stations = current_user.stations.find(:all, :order => :name)
 			end
 
-		end
-
-    respond_to do |format|
+		respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @stations }
     end
@@ -66,9 +63,10 @@ class StationsController < ApplicationController
       if @station.save
 				
 				# By default admin user is owner of each newly created station
-				admin_user = User.find_by_role("admin") 				
-				admin_user.stations << @station
-				admin_user.save
+				admin_users = User.find_all_by_role("admin") 		
+				admin_users.each do |user|
+				  user.stations << @station
+				end		
 				
 				format.html { redirect_to stations_path, notice: 'Station was successfully created.' }
         format.json { render json: @station, status: :created, location: @station }
@@ -114,18 +112,18 @@ class StationsController < ApplicationController
 		# group_by_rd is for sorting based on RD only
 		# group_by_rd and group_by_ofc represent sorting based on RD as well as Acc Office
 		if params[:group_by_rd] && params[:group_by_rd] != 'ALL'
-			@stations = RegionalDirectorate.find(params[:group_by_rd]).stations
-
+			@stations = RegionalDirectorate.find(params[:group_by_rd]).stations.find(:all, :order => :name)
+			
 			if params[:group_by_ofc] && params[:group_by_ofc] != 'ALL'
 				# TODO: Better modify sql to find by office id as well as RD id
 				# eg. AccountingOffice.find(:id => params[:group_by_ofc], :regional_directorate_id => RegionalDirectorate.find(params[:group_by_rd])
-				@stations = AccountingOffice.find(params[:group_by_ofc]).stations	
+				@stations = AccountingOffice.find(params[:group_by_ofc]).stations.find(:all, :order => :name)
 			else
-				@stations = RegionalDirectorate.find(params[:group_by_rd]).stations	
+				@stations = RegionalDirectorate.find(params[:group_by_rd]).stations.find(:all, :order => :name)	
 			end
 
 		else
-			@stations = current_user.stations
+			@stations = current_user.stations.find(:all, :order => :name)
 		end
 		
 
