@@ -1,5 +1,0 @@
-<h1>Add New battery for station </h1>
-
-<%= render 'form' %>
-
-

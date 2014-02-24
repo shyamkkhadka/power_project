@@ -1,6 +1,0 @@
-<h1>Editing battery</h1>
-
-<%= render 'form' %>
-
-<%#= link_to 'Show', @battery %> 
-<%= link_to 'Back', station_batteries_path(@station) %>

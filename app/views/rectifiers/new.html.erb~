@@ -1,5 +1,0 @@
-<h1>New rectifier</h1>
-
-<%= render 'form' %>
-
-

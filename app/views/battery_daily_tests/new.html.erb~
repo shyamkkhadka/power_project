@@ -1,5 +1,0 @@
-
-<h1>Daily test report entry of station : <%= @battery.station.name %>,system type <%= @battery.system_type.name %></h1>
-<%#= render 'form' %> 
-
-

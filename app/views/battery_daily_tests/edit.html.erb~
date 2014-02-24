@@ -1,6 +1,0 @@
-<h1>Editing battery_daily_test</h1>
-
-<%= render 'form' %>
-
-<%#= link_to 'Show', @battery_daily_test %> 
-<%#= link_to 'Back', battery_daily_tests_path %>
