@@ -136,6 +136,18 @@ div#stations_overview h1:hover {
 	cursor: pointer;
 }
 
+div#stations_overview span.heading {
+	font-size: 24px;
+	color: #125DA7;
+	font:24px  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+div#stations_overview img.heading {
+	cursor: hand;
+	cursor: pointer;
+}
+
+
 div#stations {
 	margin-top: 10px;
 }

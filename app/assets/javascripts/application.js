@@ -42,9 +42,16 @@ $(document).ready(function() {
 	});
 
 	// Observer to display stations overview on click
-	$("#stations_overview h1").click(function() {
+	// $("#stations_overview img.heading").click(function() {
+		// $("#stations_overview div.box").slideToggle('slow');
+	// });
+
+// Observer to display battery rack dimensions on click
+	$("#stations_overview span.icon").click(function() {
+		$("#stations_overview div.box").is(":visible") ? $(this).html("<img src='/assets/arrow-right.png'></img>") : $(this).html("<img src='/assets/arrow-down.png'></img>");
 		$("#stations_overview div.box").slideToggle('slow');
 	});
+
 
 	// Display station names in index page, based on selected Regional Directorate
 	$("#rd_code").on("change", function() {

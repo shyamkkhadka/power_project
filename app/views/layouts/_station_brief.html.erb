@@ -1,12 +1,12 @@
 		<div id = "stations_overview">
-			<h1> <%= @station.name %> </h1>
-			<div class="box"  style="display:none" >
+			<div> <span  class="heading"> <%= @station.name %> </span>  <span class="icon"> <img src="/assets/arrow-right.png" class="heading"></img>  </span> </div>
+			<div class="box"  style="display:none;margin-top: 10px" >
 			  <div class="leftdiv">Incharge name</div>
 			  <div class="rightdiv">: <%= @station.inc_name %></div><br />
   
 			  <div class="leftdiv">Incharge cell number</div>
 			  <div class="rightdiv">: <%= @station.inc_cell %></div><br />
-	  
+	  	
 			  <div class="leftdiv">Incharge Address</div>
 			  <div class="rightdiv">: <%= @station.inc_address %></div><br />
 	  
@@ -26,5 +26,4 @@
 		</div>
 
 		<h1>Equipment details </h1>
-
 
