@@ -2,7 +2,7 @@
 	<% @stations.each do |station| %>
 			<li>
 			<div class="leftdiv"><%= link_to station.name, station_batteries_path(station) %></div>
-    		<div class="rightdiv"><%= link_to_if(can?(:edit, Station), "Edit", edit_station_path(station)) {} %> | <%= link_to_if(can?(:delete, Station), 'Delete', station, method: :delete, data: { confirm: 'Are you sure?' }) {} %>
+    		<div class="rightdiv"><%= link_to_if(can?(:edit, Station), "Edit", edit_station_path(station)) {} %>  <%= link_to_if(can?(:delete, Station), 'Delete', station, method: :delete, data: { confirm: 'Are you sure?' }) {} %>
 			</div></li>
 	<% end %>
 	</ul>   

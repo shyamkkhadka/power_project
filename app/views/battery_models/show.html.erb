@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @battery_model.name %>
+</p>
+
+<p>
+  <b>Batt rack length:</b>
+  <%= @battery_model.batt_rack_length %>
+</p>
+
+<p>
+  <b>Batt rack width:</b>
+  <%= @battery_model.batt_rack_width %>
+</p>
+
+<p>
+  <b>Batt rack height:</b>
+  <%= @battery_model.batt_rack_height %>
+</p>
+
+<p>
+  <b>Batt rack weight:</b>
+  <%= @battery_model.batt_rack_weight %>
+</p>
+
+<p>
+  <b>Cell length:</b>
+  <%= @battery_model.cell_length %>
+</p>
+
+<p>
+  <b>Cell width:</b>
+  <%= @battery_model.cell_width %>
+</p>
+
+<p>
+  <b>Cell height:</b>
+  <%= @battery_model.cell_height %>
+</p>
+
+<p>
+  <b>Manufacturer name:</b>
+  <%= @battery_model.manufacturer_name %>
+</p>
+
+<p>
+  <b>Capacity:</b>
+  <%= @battery_model.capacity %>
+</p>
+
+
+<%= link_to 'Edit', edit_battery_model_path(@battery_model) %> |
+<%= link_to 'Back', battery_models_path %>

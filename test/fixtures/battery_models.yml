@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  batt_rack_length: 1.5
+  batt_rack_width: 1.5
+  batt_rack_height: 1.5
+  batt_rack_weight: 1.5
+  cell_length: 1.5
+  cell_width: 1.5
+  cell_height: 1.5
+  manufacturer_name: MyString
+  capacity: 1.5
+
+two:
+  name: MyString
+  batt_rack_length: 1.5
+  batt_rack_width: 1.5
+  batt_rack_height: 1.5
+  batt_rack_weight: 1.5
+  cell_length: 1.5
+  cell_width: 1.5
+  cell_height: 1.5
+  manufacturer_name: MyString
+  capacity: 1.5

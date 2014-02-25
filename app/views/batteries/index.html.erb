@@ -8,7 +8,7 @@
 	<div class="leftdiv">No. of Battery Banks </div>
 	<div class="rightdiv"><%= battery.bank_no %></div>
 	<div class="leftdiv">Total Capacity </div>
-	<div class="rightdiv"><%= battery.capacity %></div>
+	<div class="rightdiv"><%= battery.battery_model.capacity %></div>
 	<div class="leftdiv"> First Installation Date</div>
 	<div class="rightdiv"><%= battery.fist_installation_date %></div>
 	<div class="leftdiv"> Installation Team </div>
@@ -16,11 +16,11 @@
 	<div class="leftdiv"> Remarks </div>
 	<div class="rightdiv"><%= battery.remarks %></div>
 	<div class="leftdiv"> Battery Rack Dimension </div>
-	<div class="rightdiv">Length: <%= battery.batt_rack_length %> , Width: <%= battery.batt_rack_width %>, Height: <%= 	
-	battery.batt_rack_height %>, Weight: <%= battery.batt_rack_weight %> </div>
+	<div class="rightdiv">Length: <%= battery.battery_model.batt_rack_length %> , Width: <%= battery.battery_model.batt_rack_width %>, Height: <%= 	
+	battery.battery_model.batt_rack_height %>, Weight: <%= battery.battery_model.batt_rack_weight %> </div>
 	<div class="leftdiv"> Cell Dimension</div>
-	<div class="rightdiv">Length: <%= battery.cell_length %>, Width: <%= battery.cell_width %>, Height: <%= 	
-	battery.cell_height %>, Weight: <%= battery.cell_weight %> </div>
+	<div class="rightdiv">Length: <%= battery.battery_model.cell_length %>, Width: <%= battery.battery_model.cell_width %>, Height: <%= 	
+	battery.battery_model.cell_height %>, Weight: <%= battery.battery_model.cell_weight %> </div>
 </div>
 
 <div class="eqp_supplier_detail"> 
@@ -43,7 +43,7 @@
 </fieldset>
 </div>
 
-<div style="clear:both" ></div>
+<div class="report_buttons" >
 	<% if battery.daily_test_report_entered? %>
 			<%= link_to "Daily Report Entered",battery_battery_daily_tests_path(battery), :class => "link_button" %>
 		<% else %>
@@ -56,7 +56,7 @@
 		<% end %>		
 		<%= link_to 'View Daily Report', battery_battery_daily_tests_path(battery) , :class => "link_button"%>
 		<%= link_to 'View Weekly Report', battery_battery_weekly_tests_path(battery) , :class => "link_button"%>
-
+</div>
 <div>
 	<%= link_to_if(can?(:edit, battery), "Edit", edit_station_battery_path(@station, battery)) {} %> |
 	<%= link_to_if(can?(:delete, battery), "Delete", station_battery_path(@station, battery), method: :delete, 	
@@ -64,7 +64,5 @@
 </div>
 <% count  += 1 end %>
 
-<br />
-
-<%= link_to_if(can?(:new, Battery), 'New battery', new_station_battery_path(@station)) {} %>
+<div class="new_link"><%= link_to_if(can?(:new, Battery), 'New battery', new_station_battery_path(@station)) {} %> </div>
 

@@ -35,8 +35,12 @@ class Ability
 			can :manage, :all
       can :see_timestamps, User
 		elsif user.role? :station_user
-      can :read, [Station], :users => { :id => user.id }
-      can :manage, [Battery], :station => { :users => {:id => user.id} }
+      can :read, Station, :users => { :id => user.id }
+      # can [:read, :create], Battery, :station => { :users => {:id => user.id} }
+      can :manage, Battery
+      can :read, BatteryModel
+      can :read, AccountingOffice
+
       
     # # Manage all batterys associated to this station
     # stations = user.stations

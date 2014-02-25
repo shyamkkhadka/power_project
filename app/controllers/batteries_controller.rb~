@@ -59,11 +59,11 @@ class BatteriesController < ApplicationController
   def create
     @battery = Battery.new(params[:battery])
     @station = Station.find(params[:station_id])
-
+puts "parms sent is #{params[:battery].inspect}"
     respond_to do |format|
-      if @battery.save
+      if @battery.save!
         # Create empty bank records for battery according to given number of banks attributes
-        create_banks(@battery)
+       # create_banks(@battery)
         format.html { redirect_to station_batteries_path(@battery.station), notice: 'Battery was successfully created.' }
         format.json { render json: @battery, status: :created, location: @battery }
       else

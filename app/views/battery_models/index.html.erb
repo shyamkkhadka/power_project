@@ -1,0 +1,30 @@
+<h1>Listing battery models</h1>
+
+<table class="power">
+  <tr>
+    <th>Name</th>
+    <th>Battery Rack Dimension(L*W*H*Wt)</th>
+    <th>Cell Dimensions(L*W*H*Wt)</th>
+    <th>Manufacturer name</th>
+    <th>Capacity</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @battery_models.each do |battery_model| %>
+  <tr>
+    <td><%= battery_model.name %></td>
+    <td><%= battery_model.batt_rack_length %> m * <%= battery_model.batt_rack_width %> m * <%= battery_model.batt_rack_height %> m *<%= battery_model.batt_rack_weight %> kg </td>
+    <td><%= battery_model.cell_length %> m * <%= battery_model.cell_width %> m * <%= battery_model.cell_height %> m *  <%= battery_model.cell_weight %> Kg  </td>
+    <td> <%= battery_model.manufacturer_name %> </td>
+    <td><%= battery_model.capacity %> AH </td>
+    <td><%= link_to_if(can?(:edit, BatteryModel), 'Edit', edit_battery_model_path(battery_model)) {} %></td>
+    <td><%= link_to_if(can?(:delete, BatteryModel), 'Destroy', battery_model, method: :delete, data: { confirm: 'Are you sure?' }) {}%></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to_if(can?(:create, BatteryModel),'New Battery model', new_battery_model_path) {} %>
+

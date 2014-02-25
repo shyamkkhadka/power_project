@@ -13,19 +13,18 @@
 
   <div class="field">
     <%= f.label :system_type %><br />
-	  <%= f.select :system_type_id , system_types, :selected => (@battery.new_record? ? system_types.first : @battery.system_type.name ) %>
+    <%= f.collection_select :system_type_id , @system_types, :id, :name %>
+
   </div>
+  
   <div class="field">
-    <%= f.label "Manufacturer's name" %> * <br />
-    <%= f.text_field :company_name, :size => 30 %>
+    <%= f.label "Battery Model No." %><br />
+    <%= f.collection_select :battery_model_id , @battery_models, :id, :name %>
   </div>
+  
   <div class="field">
     <%= f.label "No of banks" %> * <br />
     <%= f.number_field :bank_no, :size => 30 %>
-  </div>
-  <div class="field">
-    <%= f.label :capacity %><br />
-    <%= f.number_field :capacity, :size => 30 %> AH
   </div>
   <div class="field">
     <%= f.label :installation_date %><br />
@@ -86,51 +85,7 @@
 		</div>	 
 	</div>
 
-	<div id="batt_rack_dimensions" class="separator">
-		<b>Battery Rack Dimensions</b><span class="toggle">[ + ]</span>
-		<div class="contents" style="display:none">
-			<div class="field">
-  	  	<%= f.label :batt_rack_length %><br />
-  	  	<%= f.number_field :batt_rack_length, :size => 30 %>
-  		</div>
-  		<div class="field">
-  	  	<%= f.label :batt_rack_width %><br />
-  	  	<%= f.number_field :batt_rack_width, :size => 30 %>
-  		</div>
-  		<div class="field">
-  	  	<%= f.label :batt_rack_height %><br />
-  	  	<%= f.number_field :batt_rack_length, :size => 30 %>
- 		 	</div>
-			<div class="field">
-  	  	<%= f.label :batt_rack_weight %><br />
-  	  	<%= f.number_field :batt_rack_weight, :size => 30 %>
- 		 	</div>
-		</div>
-	</div>
-  
-	
-	<div id="cell_dimensions" class="separator">
-		<b>Cell Dimensions</b><span class="toggle">[ + ]</span>
-		<div class="contents" style="display:none">
-			<div class="field">
-  	  	<%= f.label :cell_length %><br />
-  	  	<%= f.number_field :cell_length, :size => 30 %>
-  		</div>
-  		<div class="field">
-  	  	<%= f.label :cell_width %><br />
-  	  	<%= f.number_field :cell_width, :size => 30 %>
-  		</div>
-  		<div class="field">
-  	  	<%= f.label :cell_height %><br />
-  	  	<%= f.number_field :cell_height, :size => 30 %>
- 		 	</div>
-			<div class="field">
-  	  	<%= f.label :cell_weight %><br />
-  	  	<%= f.number_field :cell_weight, :size => 30 %>
- 		 	</div>
-		</div>
-	</div>
-  	
+	  	
   <div class="field">
     <%= f.label :remarks %><br />
     <%= f.text_area :remarks, :rows => 8, :cols => 43 %>
@@ -142,19 +97,6 @@
 <% end %>
 
 <script type="text/javascript">
-
-	// Observer to display battery rack dimensions on click
-	$("#batt_rack_dimensions span").click(function() {
-		$("#batt_rack_dimensions div.contents").is(":visible") ? $(this).html("[ + ]") : $(this).html("[ - ]");
-		$("#batt_rack_dimensions div.contents").slideToggle('slow');
-	});
-
-	// Observer to cell dimensions on click
-	$("#cell_dimensions span").click(function() {
-		$("#cell_dimensions div.contents").is(":visible") ? $(this).html("[ + ]") : $(this).html("[ - ]");
-		$("#cell_dimensions div.contents").slideToggle('slow');
-	});
-
 
 	// Observer to display battery dimensions on click
 	$("#batt_supplier_details span").click(function() {

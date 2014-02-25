@@ -2,16 +2,16 @@ class Battery < ActiveRecord::Base
 
 	# Inherits all the attributes of model Equipment 	
 	acts_as :equipment, :as => :equipmentable							
+
+	#validates :company_name, :presence => true
+  #:uniqueness => true
+  validates :bank_no , :presence => true
+  validates :bank_no , :numericality => true
 	
 	# TODO: May be we can remove status attribute
 	attr_accessible :bank_no, :capacity, :fist_installation_date, :installation_date, 
 	:installation_team, :remarks, :station_id, :system_type_id, :batt_rack_length, :batt_rack_width, 	  
   :batt_rack_weight, :cell_length, :cell_width, :cell_height, :cell_weight, :battery_model_id
-  
-  
-  #validates :company_name, :presence => true
-  #:uniqueness => true
-  validates :bank_no, :presence => true, :numericality => true
 		
 	belongs_to :station
 	belongs_to :system_type
@@ -45,6 +45,7 @@ class Battery < ActiveRecord::Base
 
 	HUMANIZED_ATTRIBUTES = {
     :bank_no => "No. of banks",
+		:company_name => "Manufacturer's name"
   }
 
   def self.human_attribute_name(attr, options={})

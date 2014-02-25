@@ -129,6 +129,7 @@ div#stations_overview div.box{
 	height:auto;
 	background-color:#FFF;
 	line-height:18px;
+	margin-top: 10px;
 }
 
 div#stations_overview h1:hover {
@@ -142,7 +143,7 @@ div#stations_overview span.heading {
 	font:24px  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-div#stations_overview img.heading {
+div#stations_overview span.icon {
 	cursor: hand;
 	cursor: pointer;
 }
@@ -371,6 +372,13 @@ div#tabbed_content a.link_button {
 	text-decoration:none;
 }
 
+div.report_buttons {
+	margin-bottom: 5px;
+}
+
+div.new_link {
+	margin-top: 7px;
+}
 
 /******* Battery Weekly Test Report entry page ************/
 div.table_left {
@@ -395,6 +403,8 @@ div#batt_daily_test_container, div#batt_weekly_test_container {
 }
     
 /**************** Users page **************************/
-select#user_role, select#rds, select#account_office, div#account_offices select.offices, select#accounting_office_regional_directorate_id, select#station_regional_directorate_id, select#station_accounting_office_id, select#battery_system_type_id, select#rd_code, select#acc_office{
+select#user_role, select#rds, select#account_office, div#account_offices select.offices, select#accounting_office_regional_directorate_id,
+select#station_regional_directorate_id, select#station_accounting_office_id, select#battery_system_type_id, select#rd_code, 
+select#acc_office, select#battery_battery_model_id {
 	width: 210px;
 }

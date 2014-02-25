@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140222081243) do
+ActiveRecord::Schema.define(:version => 20140225063151) do
 
   create_table "accounting_offices", :force => true do |t|
     t.string   "name"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(:version => 20140222081243) do
 
   create_table "batteries", :force => true do |t|
     t.integer  "system_type_id"
-    t.string   "company_name"
     t.integer  "bank_no"
     t.integer  "capacity"
     t.date     "installation_date"
@@ -41,14 +40,7 @@ ActiveRecord::Schema.define(:version => 20140222081243) do
     t.integer  "station_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
-    t.float    "batt_rack_length"
-    t.float    "batt_rack_width"
-    t.float    "batt_rack_height"
-    t.float    "batt_rack_weight"
-    t.float    "cell_length"
-    t.float    "cell_width"
-    t.float    "cell_height"
-    t.float    "cell_weight"
+    t.integer  "battery_model_id"
   end
 
   create_table "battery_daily_tests", :force => true do |t|
@@ -59,6 +51,22 @@ ActiveRecord::Schema.define(:version => 20140222081243) do
     t.datetime "updated_at",        :null => false
     t.integer  "bank_id"
     t.string   "inserted_by"
+  end
+
+  create_table "battery_models", :force => true do |t|
+    t.string   "name"
+    t.float    "batt_rack_length"
+    t.float    "batt_rack_width"
+    t.float    "batt_rack_height"
+    t.float    "batt_rack_weight"
+    t.float    "cell_length"
+    t.float    "cell_width"
+    t.float    "cell_height"
+    t.string   "manufacturer_name"
+    t.float    "capacity"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.float    "cell_weight"
   end
 
   create_table "battery_weekly_tests", :force => true do |t|

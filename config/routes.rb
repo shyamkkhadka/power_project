@@ -3,6 +3,9 @@ PowerProject::Application.routes.draw do
   
 
 
+  resources :battery_models
+
+
  resources :accounting_offices
 
 

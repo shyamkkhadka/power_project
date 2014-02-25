@@ -1,0 +1,61 @@
+<%= form_for(@battery_model) do |f| %>
+  <% if @battery_model.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@battery_model.errors.count, "error") %> prohibited this battery_model from being saved:</h2>
+
+      <ul>
+      <% @battery_model.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %> * <br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :manufacturer_name %> * <br />
+    <%= f.text_field :manufacturer_name %>
+  </div>
+  <div class="field">
+    <%= f.label :capacity %> * <br />
+    <%= f.text_field :capacity %> AH
+  </div>
+  <div class="field">
+    <%= f.label "Battery rack length" %><br />
+    <%= f.text_field :batt_rack_length %> m
+  </div>
+  <div class="field">
+    <%= f.label "Battery rack width" %><br />
+    <%= f.text_field :batt_rack_width %> m
+  </div>
+  <div class="field">
+    <%= f.label "Battery rack height" %><br />
+    <%= f.text_field :batt_rack_height %> m
+  </div>
+  <div class="field">
+    <%= f.label "Battery rack weight" %><br /> 
+    <%= f.text_field :batt_rack_weight %> kg
+  </div>
+  <div class="field">
+    <%= f.label :cell_length %><br />
+    <%= f.text_field :cell_length %> m
+  </div>
+  <div class="field">
+    <%= f.label :cell_width %><br />
+    <%= f.text_field :cell_width %> m
+  </div>
+  <div class="field">
+    <%= f.label :cell_height %><br />
+    <%= f.text_field :cell_height %> m
+  </div>
+  <div class="field">
+    <%= f.label :cell_weight %><br />
+    <%= f.text_field :cell_weight %> kg
+  </div>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>

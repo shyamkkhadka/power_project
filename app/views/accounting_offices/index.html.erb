@@ -12,8 +12,8 @@
   <tr>
     <td><%= accounting_office.name %></td>
     <td><%= accounting_office.regional_directorate.name %></td>
-    <td><%= link_to 'Edit', edit_accounting_office_path(accounting_office) %></td>
-    <td><%= link_to 'Delete', accounting_office, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to_if(can?(:edit, AccountingOffice), 'Edit', edit_accounting_office_path(accounting_office)) {} %></td>
+    <td><%= link_to_if(can?(:delete, AccountingOffice),'Delete', accounting_office, method: :delete, data: { confirm: 'Are you sure?' }) {} %></td>
   </tr>
 <% end %>
 </table>
